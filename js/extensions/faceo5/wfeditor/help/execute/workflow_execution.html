@@ -1,0 +1,138 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Workflow Execution</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Workflow Execution</h1>
+
+<p>Below we describe scenarios on using the workflow execution features and their expected behaviors.</p>
+
+<h2><a name="1"></a>Execute workflow end to end</h2>
+
+<p>Here, the user can execute workflow to completion without stopping. The “Run” button accomplishes this. </p>
+
+<p><b>Steps</b></p>
+<ol>
+	<li> In the “Compose” perspective, create a new workflow or load an existing workflow. Make sure the workflow you are trying to execute is syntactically correct. You can verify this by clicking on “Validate” button in “Compose” perspective. </li>
+	<li> Click on “Execute” perspective. The loaded workflow will be displayed in the “Execute” perspective. Note, the user cannot modify the workflow in “Execute” perspective as the workflow is “read-only”. However, the user can see the graph model of the workflow in the “read-only” mode and see what parameters are set in each service. </li>
+	<li> Click on “Run” button.
+		<ol>
+			<li> If the workflow is syntactically valid and all the services in the workflow run successfully then the workflow will execute 	   successfully. During execution, each service will highlight to show that it is “executing”. The “Logger Console” will show which service is executing by displaying a message “Executing service ABC…” Once the workflow execution is successfully completed, the execution results will be displayed on the screen with a pop-up. Depending on what is being executed, an appropriate link will be provided to go to the execution results. </li>
+			<li> If the workflow is syntactically invalid, then the workflow will not execute further. The message that “Error: there was a problem with the requested operation. See the logger for details.” In the “logger console”, the reason for workflow being syntactically incorrect will be displayed. The user will have to fix these errors first by going back to the “Compose” perspective. The user can then come back to “Execute” perspective and try to execute the workflow again by pressing the “Run” button. </li>
+			<li>  If any service in the workflow has an error during its execution, then the workflow will not execute further. The message that “Error: there was a problem with the requested operation. See the logger for details.” In the “logger console”, the reason for workflow service throwing an error will be displayed. The user will have to contact the SORASCS administrator (Bradley Schmerl: schmerl@cs.cmu.edu) to fix the service error to continue using that service within the workflow.  </li>
+		</ol>
+	</li>
+</ol>
+
+<h2><a name="2"></a>Step by Step Execution</h2>
+
+<p>Here, user can execute one step of the Workflow at a time. It allows user to step through one service at a time in the workflow regardless of breakpoints are set or not </p>
+
+<p> <font color="red">This feature is currently not available in this release of the software. Its user behavior will be updated here once the feature becomes available. </font> </p>
+
+<h2><a name="3"></a>Step in and Step Out of Composite Services during execution</h2>
+
+<p>Here, user can step inside of the service regardless of breakpoints are set of not. Once inside the composite service, the user can step out of it.</p>
+<p> <font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available.</font> </p>
+
+<p><b><i>Step In</i></b></p>
+<p> Here, user can step inside of the service regardless of breakpoints are set of not given that the service is composite (has internal services) and is in user’s realm (user has permissions to see internal details of the composite service) </p>
+<p><font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available. </font></p>
+
+<p><b><i>Step Out</i></b></p>
+<p> Here, once stepped inside the composite service, user can step out of the service. </p>
+<p><font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available. </font></p>
+
+<h2><a name="4"></a>Workflow Pause during Execution</h2>
+
+<p>Here, the user can pause the workflow execution by pressing “Pause” button. The workflow execution is paused in a safe state.  “Workflow execution has been paused” message will be displayed in the “Logger” console. This action is available all the time to user when in “Execute” perspective.</p>
+<p> <font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available. </font> </p>
+
+<h2><a name="5"></a>Terminate Workflow Execution</h2>
+
+<p>Here, the user can terminate the workflow execution by pressing “Terminate” button. The workflow execution will be terminated completely. “Workflow execution has been terminated” message will be displayed in the “Logger” console. This action is available all the time to user when in “Execute” perspective.</p>
+<p> <font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available. </font> </p>
+
+<h2><a name="6"></a>Viewing Intermediate Results during Execution</h2>
+
+<p>Here, the user will be able to mark the “view point” at the output of the service for which they want to see the execution results. These are the intermediate results of the workflow execution on a particular service that the user desires to look into. </p>
+
+<p><b>Steps</b></p>
+<ol>
+	<li> In the “Compose” perspective, create a new workflow or load an existing workflow. Make sure the workflow you are trying to execute is syntactically correct. You can verify this by clicking on “Validate” button in “Compose” perspective. </li>
+	<li> Click on “Execute” perspective. The loaded workflow will be displayed in the “Execute” perspective. Note, the user cannot modify the workflow in “Execute” perspective as the workflow is “read-only”. However, the user can see the graph model of the workflow in the “read-only” mode and see what parameters are set in each service. </li>
+	<li> Click on “Mark Viewpoint” button. This will take the user into “Mark Viewpoint” mode. To get out of Mark Viewpoint” mode, click on “Mark Viewpoint” button again.</li>
+	<li> Hover over the service you want to mark the view-point on. Click on the output port of the service and you will see the “Eye” icon image appear at the output port of the service. This means that the view point is marked. </li>
+	<li> If you click on the marked view-point on the service again, the view point can be removed. </li>
+	<li> Click on “Run” button, to start workflow execution. </li>
+	<li> At the bottom, in “View Intermediate Results” Logger you will see the intermediate results of the workflow execution for the services that had the viewpoints marked on their output port. </li>
+</ol>
+
+<p><b>Constraints</b></p>
+<p> View point cannot be set on the “Data” services. View point cannot be set on the “input” ports of the services.  User cannot mark the viewpoint dynamically when the execution is in progress. User can only mark the view-point before execution begins or when the workflow is in the pause state.</p>
+
+<h2><a name="7"></a>Execution with UI interaction service</h2>
+
+<p><font color="red"> TO DO</font> </p>
+
+<h2><a name="8"></a>Debug Workflow</h2>
+
+<p>This section will describe the features that will allow user to debug the workflow as needed in case there are error’s during execution.</p>
+
+<p><b><i> Setting Breakpoints </i></b></p>
+
+<p> Here, user can set the break-point at the beginning of the service and one break-point at a time using the “Set Breakpoint” button.  </p>
+
+<p><b>Steps</b></p>
+<ol>
+	<li> Click on “Set Breakpoint” button. This will take the user into “Set Breakpoint” mode. To get out of Set Breakpoint” mode, click on “Set Breakpoint” button again. </li>
+	<li> Hover over the service you want to set break-point on. Click on the service and you will see the breakpoint image appear at the beginning of the service. This means that the breakpoint is set. </li>
+	<li> If you click on the service again, the breakpoint can be removed.</li>
+	<li> You can set the breakpoints inside the composite service as long as you have permissions to step inside the composite service. (See Step In section to see how to step inside of a composite service).</li>
+</ol>
+
+<p><b>Constraints</b></p>
+<p> This action is not allowed on the data source or sink services. This action is available when the workflow has not started executing at all or when the workflow is “paused” in a safe state. </p>
+
+<p><font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available. </font> </p>
+
+<p><b><i> Run to breakpoint </i></b></p>
+
+<p> Here, user can run to the break-point.   </p>
+
+<p><b>Steps</b></p>
+<ol>
+	<li> Click on “Run to break-point” 
+		<ol>
+			<li> If next breakpoint is available
+				<ol>
+					<li> Workflow will execute up to next service with the breakpoint. </li>
+					<li> Execution progress is shown in the “Logger” console. </li>
+				</ol>
+			</li>
+			<li> If there is no breakpoint available 
+				<ol>
+					<li> Workflow will execute to the end. This is equivalent to pressing “Run” button. </li>
+					<li> Execution progress is shown in the “Logger” console depending on what SORASCS is providing to the front end.</li>
+				</ol>
+			</li>
+		</ol>
+	</li>
+
+</ol>
+
+<p><font color="red"> This feature is currently not available in this release of the software. Details on its user behavior will be updated here once the feature becomes available </font> </p>
+
+<p><b><i> Clear all breakpoints </i></b></p>
+
+<p> Here, user can clear all the set breakpoints.   </p>
+
+<p><b>Steps</b></p>
+<ol>
+	<li> Click on “Clear all breakpoints” button. </li>
+	<li> All the set breakpoints will be cleared. </li>
+</ol>
+
+</body>
+</html>

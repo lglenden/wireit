@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Workflow Configuration</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Workflow Configuration</h1>
+
+<p>This page details how to configure your workflow by saving intermediate results and setting
+workflow properties.  These are both intermediate features that are not necessary for the normal
+operation of the workflow tool.</p>
+
+<h2><a name="1"></a>Save intermediate results</h2>
+
+<p>The tool allows you to save the intermediate results of a workflow.  Normally, a workflow
+represents a complete transformation/analysis of data from end to end, and you are interested in
+viewing the final result of the analysis.  However, for various reasons you may wish to also save
+intermediate results part-way through the workflow.</p>
+
+<p>To accomplish this, you must first connect a "Fork" service at the location where you want to
+save the intermediate results.  The fork takes one wire connection and splits it into two (or more)
+connections.  Once the connection has been split, you can connect one of them to a data source to
+store the intermediate result and another connection to the rest of the workflow as needed.</p>
+
+<p>There are some restrictions on the use of the Fork service.  Right now the tool only supports
+liner workflows, which means that the one of the forked connections can continue on to a non-data
+service.</p>
+
+<h2><a name="2"></a>Configure workflow properties</h2>
+
+<p>Properties of the workflow can be configured in the panel labeled "Workflow Properties" on the
+right side of the perspective.  In this area you can set the name, description, and tags of the
+workflow.  The tags affect how the workflow is categorized when it shows up in the palette.</p>
+
+</body>
+</html>

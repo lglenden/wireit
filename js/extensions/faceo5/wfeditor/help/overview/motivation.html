@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Motivation</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Motivation</h1>
+
+<p>The purpose of this page is to motivate the usage of the workflow management tool.
+More specifically:</p>
+<ul>
+<li>Who should use the tool?</li>
+<li>Why was it created?</li>
+<li>What are its main features?</li>
+</ul>
+
+<h2>Who should use the tool?</h2>
+
+<p>The primary users of the workflow management are likely to be analysts already familiar with Dynamic Network Analysis (DNA) and the tools made by the CASOS lab.  These tools provide many useful functionalities for performing DNA tasks, including natural language processing, graph creation and transformation, and report generation.</p>
+
+<p>The ideal user should already be familiar with these tools and what sorts of tasks can be completed with them.  They may have received training from the CASOS lab on their usage, or they may simply be familiar with them through past usage.</p>
+
+
+<h2>Why was it created?</h2>
+
+<p>One of the primary issues with the previous generation of CASOS tools is that they were monolithic, had complicated and non-uniform interfaces, and did not track the steps needed to complete a particular task.  Through a collaboration with the SORASCS project, the idea of a <i>workflow management tool</i> on top of a <i>service-oriented architecture</i> was envisioned to address these issues.</p>
+
+<p>The large, stove-piped applications were broken down into fine-grained <i>services</i> that could then be orchestrated into a linear set of steps called a <i>workflow</i>.  This tool was created to provide an easy-to-use graphical interface on top of this underlying architecture.  Its purpose is to provide analysts access to these services to compose, execute, save, and share these DNA workflows.</p>
+
+
+<h2>What are its main features?</h2>
+
+<ul>
+<li><b>Composition</b>.  All of the CASOS tool features that have been broken down into services are available to compose into a workflow.  This orchestration is accomplished by dragging-and-dropping the services on a composition canvas, and connecting them appropriately.  These workflows can be saved, re-opened, and shared with other analysts on the SORASCS system.</li>
+<li><b>Execution</b>.  Once a valid workflow has been created with the appropriate data sources that the user wants to analyze, it can be executed.  While the workflow is executing, the tool provides features such as progress monitoring and viewing intermediate results so that the analyst can know more precisely what is happening behind the scenes as the data is transformed and analyzed.</li>
+<li><b>Re-Use</b>.  There are many paths of re-use in the tool.  Most simply, the user can easily run the same workflow on different data sources, and save/modify existing workflows.  The tool also allows the user to re-use an existing workflow as a step in another workflow!  This hierarchical approach is a very powerful feature for re-use, especially considering that you can re-use other analysts' workflows as a service within your own workflow.</li>
+<li><b>Analysis</b>.  A workflow itself may have properties that the user may be interested in analyzing.  The tool currently has two main mechanisms for workflow analysis: syntactic checking, and semantic analysis.  Syntactic checking ensures that the workflow is <i>valid</i>: in other words, it can be executed.  Semantic analyses work on a plugin system, which means that anyone can write an analysis for it.  These plugins have access to a wealth of information such as historical executions and can thus perform deeper analyses.</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,203 @@
+/**
+ * ComposePerspective.css
+ *
+ * This file contains style definitions related to the compose perspective.
+ * Note: will need to be updated when there are multiple compose perspectives.
+ *
+ * @author Laura
+ *
+ */
+ 
+/********************* TOP *********************/ 
+
+/** Toolbar Buttons **/
+
+#composeTop .yui-button, #executeTop .yui-button {
+    margin: 0px 3px;
+    margin-top: 1px;
+}
+
+#composeTop .yui-button button, #executeTop .yui-button button {
+    padding-left: 2em;
+    font-size: 92%;
+}
+
+
+/** Unsaved Indicator **/
+
+/* Save button background */
+.unsaved span {
+    background: #FF9900;
+}
+
+/* Save button text */
+.unsaved button {
+    font-weight: bold;
+}
+
+
+/** Zoom Slider **/
+
+/* Background */
+div #slider-bg {
+    position: absolute;
+    right: 40px; 
+    background:url(../wireit-lib/yui/slider/assets/bg-fader.gif) 5px 0 no-repeat; 
+}
+
+/* Zoom in button */
+div #zoom-in-button {
+    position: absolute;
+    right: 270px;
+    cursor: pointer;
+}
+
+/* Zoom out button */
+div #zoom-out-button {
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+}
+
+/* Zoom reset button */
+div #zoom-reset-button {
+	position: absolute;
+	right: 0px;
+	cursor: pointer;
+}
+
+
+/********************* CENTER *********************/
+
+/* The center, "packaging" div. */
+/* The rounded borders only work on Firefox and Safari. */
+div #composeCenter {
+    border: 1px black solid;
+    z-index: 0;
+    background: #3366CC;
+    position: relative;
+    color: #FFFFFF;
+    -moz-border-radius-topleft: 25px;
+    -moz-border-radius-topright: 25px;
+    -webkit-border-top-left-radius: 25px;
+    -webkit-border-top-right-radius: 25px;
+    height: 100%;
+}
+
+img.WireIt-Container-icon {
+	width: 16px;
+}
+	
+
+/* The div that holds the "packaging" icon. */
+div #composeCenterIcon {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+/* The div that holds the "packaging" title. */
+div #composeCenterTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* The div that holds the composition layer. */
+div #composeLayer {
+    position: absolute;
+    top: 40px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+    
+    display: block;
+    border: 1px black solid;
+}
+
+
+/********************* RIGHT *********************/
+
+/** Layer Map (Mini-map) **/
+
+/* The div that holds the <canvas> */
+#composeLayerMap {
+    width: 80%;
+}
+
+/* The <canvas> itself */
+#composeLayerMap canvas.WireIt-LayerMap {
+    position: relative;
+}
+
+
+/** Service Properties **/
+
+div.inputEx-Group div.inputEx-label {
+    width: 100px;
+}
+
+
+/** Workflow Properties **/
+
+/* The <div> for the properties */
+#composeWorkflowProperties {
+    font-size: 10px;
+}
+
+/* InputEx labels in the form -- this prevents it from being too wide */
+#composeWorkflowProperties div.inputEx-Group div.inputEx-label {
+	width: 50px;
+}
+
+/** Data Properties **/
+
+.uploadButton a, .clearButton a {   
+	display:block;   
+    width:80px;   
+    height:35px;   
+    text-decoration: none;   
+    margin-left:5px;   
+}
+
+.uploadButton a {   
+	background: url("../images/buttons/uploadFileButton.png") 0 0 no-repeat;   
+}   
+
+.clearButton a {   
+	background: url("../images/buttons/clearListButton.png") 0 0 no-repeat;   
+}
+
+#fileProgress {
+    border: black 1px solid;
+    width:300px;
+    height:38px;
+    float:left
+}
+
+#fileName {
+	text-align:center;
+	margin:5px;
+	font-size:12px;
+	width:290px;
+	height:25px;
+	overflow:hidden
+}
+
+#progressBar {
+	width:300px;
+	height:3px;
+	background-color:#CCCCCC;
+}
+
+#uploaderUI {
+	width:80px;
+	height:30px;
+	margin-left:5px;
+	float:left;
+}
+
+#uploadButtonId, #clearButtonId {
+	float: left;
+	width: 90px
+}

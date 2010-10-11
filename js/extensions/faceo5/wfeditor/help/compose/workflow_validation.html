@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Workflow Validation</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Workflow Validation</h1>
+
+<p>This page details <i>syntactic validation</i> of a workflow.  This is different from <i>semantic
+analysis</i> that is discussed in a different section of the user manual.  Syntactic validation is
+necessary in order for the workflow to execute.</p>
+
+<p>Generally speaking, there are two types of syntactic checks in the tool.  Some of them are
+<i>dynamic</i>, which means that they happen instantly during the construction of a workflow.  Others
+can only be checked when you explcitily validate the workflow.</p>
+
+<h2><a name="1"></a>Dynamic syntactic checks</h2>
+
+<p>Dynamic syntactic checks are those that happen instantly during the construction of a workflow.
+They are intended to give you immediate feedback so that you can quickly correct these problems.
+Current dynamic syntactic checks include:</p>
+
+<ul>
+<li><b>Ports type check</b>.  This checks the type of the ports between two services being
+connected.  These types should match; otherwise this action is not allowed.</li>
+<li><b>Service configuration parameter type check</b>.  This checks the type of the value for
+a configuration parameter that is entered.  Invalid values may not be entered.</li>
+<li><b>Self connection</b>.  This checks for whether you're trying to connect two ports on the
+same service to each other.</li>
+<li><b>Single connection between two ports</b>.  This checks that only one connection (wire)
+is allowed between two ports.</li>
+<li>Input-Input and Output-Output</b>.  This checks that all connections are between only one
+input and only one output.</li>
+</ul>
+
+<h2><a name="2"></a>Syntactic validation</h2>
+
+<p>You can syntactically validate a workflow in its entirety by clicking the "Validate" button in
+the compose perspective.  This runs all syntactic checks against the currently opened workflow and
+notifies you of any problems.  In addition to the checks listed in the previous section, this
+validation also includes:</p>
+
+<ul>
+<li><b>Fork service connection</b>.  This checks that a fork service can be connected to as
+many data services as desired, but at most one of a normal service or exposed.</li>
+<li><b>Fork service exposed</b>.  This checks that a fork service cannot be exposed on its
+input port.</li>
+<li><b>Required ports</b>.  This checks that all ports marked as "required" either have a
+connection or are exposed.</li>
+<li><b>Required configuration parameters</b>.  This checks that all configuration parameters
+marked as "required" either have a value, UI service connection, or are exposed.</li>
+</ul>
+
+</body>
+</html>

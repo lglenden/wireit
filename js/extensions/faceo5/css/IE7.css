@@ -1,0 +1,67 @@
+/**
+ * IE7.css
+ *
+ * This file contains IE7-specific style definitions.
+ *
+ * @author Nina
+ *
+ */
+ 
+/** Buttons **/
+.buttonImgTxt {
+	left: -18px;
+	top: -18px;
+}
+
+.buttonImg {
+	left: -45px;
+	top: 3px;
+}
+
+#executeTop .yui-button button {
+	height: 25px;
+	padding-left: 4em;
+}
+
+#composeTop .yui-button button {
+	height: 25px;
+	padding-left: 4em;
+}
+
+div.leftCollapseTitle, div.rightCollapseTitle {
+    top: 25%;
+}
+
+div.collapseTitle p.right {
+    writing-mode: tb-rl;
+}
+
+div.collapseTitle p.left {
+    writing-mode: tb-rl;
+    filter: flipH() flipV();
+}
+
+.yui-skin-sam .yui-layout .yui-layout-unit div.yui-layout-bd {
+  font-size:13px;
+}
+
+.yui-skin-sam .yui-button button {
+  color:#000;
+  font-size:93%;
+  min-height:auto;
+  padding-bottom:0;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:0;
+}
+
+/** wire-it canvas **/
+div.WireIt-Layer {
+	position:absolute;
+}
+
+/** icons **/
+.WiringEditor-module img {
+  height:16px;
+}
+

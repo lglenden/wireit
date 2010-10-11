@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Service Configuration</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Service Configuration</h1>
+
+<p>This page details how to find and configure a service in your workflow.  It also discusses the
+advanced feature of connecting a UI service to provide values for parameters dynamically at
+execution-time.</p>
+
+<h2><a name="1"></a>Find a service on the palette</h2>
+
+<p>As discussed in the <a href="perspective_layout.html">compose perspective layout</a>, there are a
+number of ways to find a service on the palette.  First of all, all the services that are available to
+you based on your SORASCS user account are displayed in a default categorization.  They are first
+broken out by their type (service, data, utility, or workflow) and then broken out further by their
+main functionality.</p>
+
+<p>At the top of the palette is an area that you can use to filer the displayed services based on
+their name.  As you type in this box, the services that do <i>not</i> match the filter are
+dynmically removed from the palette.  Clearing the filter will return all the services to the
+palette.</p>
+
+<p>Beneath the filter are buttons for service searching.  You can do an advanced search based on
+service meta-information.  This includes the name, the author, the description, the type, and any
+set tags.  The search filters out those services that don't match from the palette.  Clicking the
+"clear all" button will return all missing services to the palette.  Beneath the search are buttons\
+for service re-categorization.  You can do an advanced categorization based on the available tags,
+or return to the default.</p>
+
+<p>Below this is the actual list of services.  This comprises of two parts: the first expandable
+panel is for those services that you have marked as a favorite.  You can mark/unmark services on
+favorites by clicking on the star icon on the service.  Your favorites are associated with your
+user account and persist across browser sessions.  Thick services cannot be marked as favorites
+because they are unique to the specific computer that you are using.</p>
+
+<p>Finally is the list of services.  Here you can see all available services that match whatever
+filter, search, and categorization that you have selected.  You can add services to your workflow by
+dragging and dropping them from the palette onto the composition canvas.</p>
+
+<h2><a name="2"></a>Configure service parameters</h2>
+
+<p>Many of the services have configuration parameters that change how the service operations.  These
+parameters can be configured in two places: first on the service itself in the workflow and second
+on the right-hand side of the perspective in the "Service Properties" panel.  Any changes that you
+make in one configuration place will be refelcted in the other place.</p>
+
+<p>What parameters are available depends on the individual service.  Generally services will either
+have a text box for strings or numbers, or a dropdown list of choices.</p>
+
+<h2><a name="3"></a>Connect a UI service</h2>
+
+<p>One of the advanced features of the tool is to connect a "UI service" to one or more configuration
+parameters for a service.  What this means is that those parameters are not set <i>statically</i>
+during the composition of the workflow.  Rather, they are set <i>dynamically</i> during the
+execution of the workflow.  The tool will prompt the user for those values when that point in the
+workflow is reached during execution.</p>
+
+<p>To connect a UI service to a service's configuration parameters, you must first drag-and-drop the
+UI service from the "Utilities" section of the palette.  This service is a bit different from the
+others because it is limited in the things that it can connect to.  Its purpose is to provide a
+form like the one you see on the service, but during execution time.</p>
+
+<p>The UI service also allows you to add/remove as many ports as you want.  This allows you to have
+more than one configuration parameter in the execution-time pop-up window.  However, the relationship
+between a UI service and a normal service is one-to-one; in other words, you can't have more than one
+UI service connected to one normal service, and you can't have one UI service connected to more than
+one normal service.</p>
+
+</body>
+</html>

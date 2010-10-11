@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Data Service Configuration</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+
+<h1>Data Service Configuration</h1>
+<p>Data services will allow the user to access a pre-existent set of files stored on SORASCS and
+also provide opportunity to create new data sets that can be used in the different workflows.</p>
+
+<h3>Using data on SORASCS<a name="DataServices-DataOnSORASCS">.</a></h3>
+<p>Data services offered by SORASCS will be organized on two leves:<br />
+<ol>
+    <li><b>Project</b>: The data will be grouped in a project that will contain data related to some
+    specific topic, for example: data related to Sudan events.</li>
+    <li><b>Categories</b>: The data inside the projects will be organized depending on the nature of
+    the data, for example: reports, thesauri, lists, etc.</li>
+</ol>
+
+<p>Aside from this organization, data services can be either input or output, if the user has
+permission (configured in SORASCS), he or she will be able to change the direction of the data
+service, there will be a small icon next to the data service in the canvas to switch between input
+or output. By performing this action, any wires that may be connected to the data service will
+disconnect.</p>
+
+<h3>Uploading local data to SORASCS<a name="DataServices-UploadDataToSORASCS">.</a></h3>
+<p>As we can see in the right section of the screen, there's the properties column that contains
+minimap, service properties, workflow properties and data properties, let's review <b>data
+properties</b>.</p>
+<p>This section will allow the user to create new data sources
+(<a href="#DataServices-InputData">input</a> or <a href="#DataServices-OutputData">output</a>) that
+will be available as any othere data services that is already in SORASCS. Let's proceed with the
+creation of output data.</p>
+
+<h3>Configuring data services<a name="DataServices-ConfiguringDataServices">.</a></h3>
+<h4>Output data<a name="DataServices-OutputData">.</a></h4>
+<p>First, we activate the output option and we will notice that one of the fields (File(s))
+disappears, since we won't upload any data this is expected. We proceed with the setting of the
+next properties:</p>
+<ul>
+    <li><b>Name</b>: The name that the data will have.</li>
+    <li><b>Project</b>: The project (as explained <a href="#DataServices-DataOnSORASCS">before</a>)
+    the data will be part of (Sudan data, Russia espionage, World domination, etc)</li>
+    <li><b>Category</b>: The category will allow the user to set the type of information that this
+    output will be, for example: thesauri, list or any other category that the user wants to create,
+    we can set any amount of categories to the data just by clicking on the plus and minus symbol
+    below the category input.</li>
+</ul>
+<p>Finally, we press the create button to create the new output data service.</p>
+
+<h4>Input data<a name="DataServices-InputData">.</a></h4>
+<p>First, we activate the input option and proceed with the setting of the next properties.</p>
+<ul>
+    <li><b>Name</b>: The name that that the data will have.</li>
+    <li><b>File</b>: The files that will be part of this data service will be set by the user, the
+    user can browse and select any file in his or her computer, the user cannot select directories, 
+        <ul>
+            <li><b>Sending multiple files</b>: The only way to send multiple files is to zip them
+            and then selecting it.</li>
+            <li><b>Infinite amount of files</b>: The user can add as many files as needed, by
+            pressing the plus button below the file field, we can add more fields and by pressing
+            the minus button we remove them.</li>
+        </ul>
+    <li><b>Project</b>: The project (as explained <a href="#DataServices-DataOnSORASCS">before</a>)
+    the data will be part of (Sudan data, Russia espionage, World domination, etc)</li>
+    <li><b>Category</b>: The category will allow the user to set the type of information that this
+    output will be, for example: thesauri, list or any other category that the user wants to create,
+    we can set any amount of categories to the data just by clicking on the plus and minus symbol
+    below the category input.</li>
+</ul>
+<p>After setting these properties, we create the data input service by clicking on the create
+button. Once the data is on SORASCS, a new element will appear in the palette making it available to
+use it like any other data service. The type of the new data service is provided by SORASCS after it
+has been created.</p>
+</body>
+</html>

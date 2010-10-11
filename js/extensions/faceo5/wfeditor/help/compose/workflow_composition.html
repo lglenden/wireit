@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Workflow Composition</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Workflow Composition</h1>
+
+<p>Workflow composition is one of the most basic uses of the workflow management tool.  Composition
+consists of orchestrating a workflow from a number of connected services.  This page describes how
+to create, load, save, and edit a workflow.</p>
+
+<h2><a name="1"></a>Create a new workflow</h2>
+
+<p>When the tool first loads, the initial state is a new workflow.  You can immediately begin
+composing a new workflow from this screen.</p>
+
+<p>When you have multiple workflows open, you can open a new workflow by clicking the "New" button at the top of the perspective.  This will create a new workflow tab with a blank workflow.  Before giving the workflow a name explicitly, its name is set to "New Workflow."</p>
+
+<h2><a name="2"></a>Save a workflow</h2>
+
+<p>When you have one or more workflows open, you must save them before you perform many features of the workflow tool, including loading, validating, and executing.  There are a number of options for saving:</p>
+
+<ul>
+<li><b>Save</b>.  This option saves the workflow under your user account with the name and properties that you have specified.  If you haven't specified a name, you will be prompted for one.  If you give a name that is already associated with a workflow, the old value is overwritten.</li>
+<li><b>Save As</b>.  This option prompts you for a new name for your workflow and then saves it with that name and the current workflow properties that have been set.</li>
+<li><b>Save All</b>.  This option is like "save" but it applies it to <i>all</i> workflows that are currently opened in the tool.</li>
+</ul>
+
+<h2><a name="3"></a>Load a workflow</h2>
+
+<p>From the initial screen, or any time afterward, you can always load an existing workflow that you have created and saved in the past.  To do this, click the "Open" button or one of the options in its submenu (explained below).  A screen will appear to prompt you for which workflow you want to open.  To pick a workflow to open, click on the name of the one that you want.  The workflow will then be loaded into the appropriate tab and the perspective will change to reflect its information.</p>
+
+<p>There are a number of options for loading:</p>
+
+<ul>
+<li><b>Open</b>.  This will prompt you for which workflow you want to load <i>in a new tab</i>; in other words, it leaves all other open workflows alone.  However, if the currently opened tab is a new workflow, it will be opened in the current tab.</li>
+<li><b>Open and Replace</b>.  This will again prompt you for which workflow you want to load, but the difference is that it replaces whatever workflow you currently have opened with the one that you have selected.</li>
+</ul>
+
+<h2><a name="4"></a>Close a workflow</h2>
+
+<p>When one or more workflows is currently open in the tool, they can be closed.  This only closes
+them from the tool and does <i>not</i> remove the saved workflow.  There are a number of options for
+closing:</p>
+
+<ul>
+<li><b>Close</b>.  This option closes the current workflow <i>and</i> the currently opened tab.</li>
+<li><b>Close and Replace</b>.  This option closes the current opened workflow and replaces the
+current tab with a new workflow.</li>
+<li><b>Close all</b>.  This option closes all currently opened workflows in the tool.</li>
+</ul>
+
+<h2><a name="5"></a>Delete a workflow</h2>
+
+<p>When one or more workflows is currently open in the tool, they can be deleted.  This both closes
+the workflow in the tool and removes the saved workflow.  This action cannot be undone, so use it
+with care!  There are a number of options for deleting:</p>
+
+<ul>
+<li><b>Delete</b>.  This option deletes the current workflow <i>and</i> closes the currently
+opened tab.</li>
+<li><b>Delete and Replace</b>.  This option deletes the current workflow and replaces the current
+tab with a new workflow.</li>
+</ul>
+
+<h2><a name="6"></a>Undo and redo actions</h2>
+
+<p>In the composition perspective, you will see an "undo" and a "redo" button at the top of the
+perspective.  The tool has an undo/redo event system <i>only</i> for select composition events.
+The buttons will be enabled and disabled at the appropriate times to let you know when there are
+actions available to undo and redo.  There is a limit on the size of the undo/redo stacks, and
+performing any additional actions will invalidate any actions in the "redo" stack.</p>
+
+<p>Currently, the following events can be undone/redone:</p>
+
+<ul>
+<li>Adding a service to the canvas</li>
+<li>Removing a service from the canvas</li>
+<li>Moving a service on the canvas</li>
+<li>Adding a connection (wire) to two services on the canvas</li>
+<li>Removing a connection (wire) from two services on the canvas</li>
+<li>Changing the value of a service's configuration parameter</li>
+<li>Changing the workflow meta-information</li>
+<li>Adding/removing dynamic ports on a fork or UI service</li>
+</ul>
+
+</body>
+</html>

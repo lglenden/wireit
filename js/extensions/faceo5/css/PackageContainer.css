@@ -1,0 +1,32 @@
+/**
+ * PackageContainer.css
+ *
+ * This file contains style definitions related to the package container.
+ *
+ * @author Laura
+ *
+ */
+
+/* The package container. */
+#composeCenterPackageContainer {
+	border: 5px dashed #336699;
+    position: absolute;
+    z-index: 0;
+    opacity: 1;
+}
+
+/* Make sure that normal containers are above the package container. */
+WireIt-Container {
+	z-index: 1;
+}
+
+/* Special formatting for exposed terminals on the packaging border */
+div.WireIt-ExposedTerminal {
+	background-position: 0 0;
+    background: transparent url(../images/terminals_exposed.png) no-repeat scroll;
+}
+
+/* We need to repeat this because of the cascading nature of CSS... */
+div.WireIt-Terminal-connected {
+	background-position: 0 -30px;
+}

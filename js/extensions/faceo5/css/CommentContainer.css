@@ -1,0 +1,19 @@
+/**
+ * CommentContainer.css
+ *
+ * This file contains style definitions for comment containers.
+ *
+ * @author Laura
+ */
+
+div.CommentContainer div.body {
+	background-color: #EDF5FF;
+}
+
+div.CommentContainer div.body textarea {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+}

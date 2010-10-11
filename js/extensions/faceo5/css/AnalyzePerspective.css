@@ -1,0 +1,69 @@
+/**
+ * AnalyzePerspective.css
+ *
+ * This file contains style definitions related to the analyze perspective.
+ *
+ * @author Laura
+ *
+ */
+ 
+ /** The center piece (showing information about the analysis). **/
+ 
+#analyzeCenterAnalysis {
+	overflow: auto;
+}
+ 
+#analyzeCenterAnalysisHeader {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20pt;
+}
+ 
+#analyzeCenterAnalysisDesc {
+    margin-top: 20px;
+}
+ 
+#analyzeCenterAnalysisDesc p {
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+ 
+#analyzeCenterAnalysisCreator {
+    margin-top: 20px;
+}
+ 
+#analyzeCenterAnalysisButtons {
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+ 
+ /** The WireIt layer for the analyze perspective */
+ 
+#analyzeLayer {
+    border: 1px black solid;
+}
+
+/** Results unit **/
+
+#analyzeBottom h2 {
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#analyzeBottom h3 {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#analyzeBottom ul li, #analyzeCenterAnalysisDesc ul li {
+	list-style-type: disc !important;
+	list-style-position: inside;
+}
+
+#analyzeBottom em {
+	font-weight: bold;
+}
+

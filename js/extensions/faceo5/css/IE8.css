@@ -1,0 +1,47 @@
+/**
+ * IE8.css
+ *
+ * This file contains IE8-specific style definitions.
+ *
+ * @author Laura
+ *
+ */
+ 
+/** Buttons **/
+
+.buttonImg {
+	top: 2px;
+	left: -22px;
+}
+
+#composeTop .yui-button, #executeTop .yui-button {
+	margin-top: 0px;
+}
+
+
+/** Hacky collapse titles for the layout units **/
+
+div.leftCollapseTitle, div.rightCollapseTitle {
+    top: 25%;
+}
+
+div.collapseTitle p.right {
+	left: 0;
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+div.collapseTitle p.left {
+	left: 0;
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/** icons **/
+.WiringEditor-module img {
+  height: 16px;
+}
+
+/** Services **/
+
+.Service {
+	overflow: visible;
+}

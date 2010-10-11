@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Workflow Management Tool: Workflow Analyses</title>
+    <link rel="stylesheet" type="text/css" href="../help.css" />
+</head>
+<body>
+<h1>Workflow Analyses</h1>
+
+<p>Here, the user has various analyses available to use. These analyses allows user to analyze various properties of the workflow.  The tool currently has one example analyses available to analyze different properties of the workflow based on historic data. As, more analyses become available they will be displayed in the analyses list for the user to chose from.</p>
+
+<h2><a name="1"></a>Workflow Semantic Analyses using Bigram Algorithm</h2>
+
+<img src="bigram.png" />
+
+<p>Above is the example screenshot of what these analyses look like in the tool. This analysis uses bigrams (see Wikipedia for more information) to analyze your workflow and make suggestions. </p>
+
+<p>These analyses use the historical data stored on SORASCS to find patterns in this past data. These patterns can then be applied to the workflow that you chose through different analyses. </p>
+
+<p>Currently there are three types of analysis available using bigrams. You can select which one you want below.
+</p>
+<ul>
+<li><b>Order Analysis:</b>  This looks at the ordering of your workflow and checks it against the historical data. If there are services that make more sense in another order, they are suggested.</li>
+<li><b>Next Service Analysis:</b>  This suggests a next service for the end of your workflow, based on the historical data. It can be helpful if you are not sure how to proceed with your workflow construction. </li>
+<li><b>Previous Service Analysis: </b>.  This suggests a previous service for the beginning of your workflow, based on the historical data. It can be helpful if you know 'where you want to be' but aren't sure how to get there. </li>
+</ul>
+</body>
+</html>

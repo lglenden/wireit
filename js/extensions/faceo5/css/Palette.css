@@ -1,0 +1,80 @@
+/**
+ * This class holds CSS definitions related to the Palette.
+ *
+ * @author Laura
+ */ /** Make buttons a bit smaller. **/
+.yui-skin-sam .yui-button button,.yui-skin-sam .yui-button a {
+	padding: 0px 5px;
+}
+
+/** The top-level palette div. **/
+.palette {
+	text-align: left;
+}
+
+/** Take away the bottom border for the "my favorites" list **/ /*
+#composeLeftFavorites ul.yui-accordionview {
+    border-bottom: none;
+}
+*/ /** A module in the palette. **/
+.palette div.paletteModule {
+	background-color: #DDDDFF;
+	border: 1px solid #000000;
+	font-weight: normal;
+	height: auto;
+	min-height: 18px;
+	overflow: auto;
+	position: relative;
+	-moz-border-radius-bottomleft: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-topleft: 2px;
+	-moz-border-radius-topright: 2px;
+	font-size: 9pt;
+	margin: 1px;
+	padding: 2px;
+}
+
+/** The text in a palette module. **/
+.palette div.paletteModule span {
+	display: inline-block;
+	margin: 0 20px 0 0;
+	position: absolute;
+}
+
+/** Images in a palette module. **/
+.palette div.paletteModule img {
+	margin: 0px;
+	/*width: 16px;*//*disable the width control here, so that width in <img> tag will take effect*/
+}
+
+/** The service buttons div in a palette module. **/
+.palette div.paletteModule div.serviceButtons {
+	display: inline-block;
+	float: right;
+	width: 32px;
+}
+
+/* The meta-information and favorite image. */
+.palette div.paletteModule img.serviceMetaInfo,.palette div.paletteModule img.serviceFavorite
+	{
+	cursor: pointer;
+}
+
+span.deleteicon {
+	position: relative;
+}
+
+span.deleteicon span {
+	position: absolute;
+	display: block;
+	top: 0px;
+	right: 0px;
+	width: 16px;
+	height: 16px;
+	background: url('http://sstatic.net/so/img/comment-del.png');
+	cursor: pointer;
+}
+
+span.deleteicon input {
+	padding-right: 16px;
+}

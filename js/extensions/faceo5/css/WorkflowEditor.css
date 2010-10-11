@@ -1,0 +1,199 @@
+/**
+ * WorkflowEditor.css
+ *
+ * This file contains style definitions related to the higher-level WorkflowEditor.
+ * It also contains some definitions that are used in many difference places.
+ *
+ * @author Laura
+ *
+ */
+
+#helpLink {
+	margin-right: 25px;
+}
+
+/* Anything that should be indented */
+/* TODO remove */
+.leftIndent {
+	padding-left: 5px;
+}
+
+/* Anything that just uses the default cursor.  Used to indicate non-draggable
+   containers on a canvas. */
+.nonDraggable, div.nonDraggable, div.nonDraggable span, div.nonDraggable div,
+div.nonDraggable div.body {
+    cursor: default;
+    opacity: 1;
+}
+
+
+/** Needed for split buttons to work. **/
+
+.hasSplitButtons, .yui-layout .hasSplitButtons div.yui-layout-bd {
+	z-index: 1;
+    overflow: visible;
+}
+
+
+/** Get icons on YUI buttons **/
+
+.buttonImg {
+	float: left;
+	position: relative;
+	left: -25px;
+	top: -1px;
+}
+
+.buttonImgTxt {
+	vertical-align: middle;
+	position: relative;
+	left: -20px;
+}
+
+img.WireIt-Container-icon {
+	width: 16px;
+	height: 16px;
+}
+
+
+/** Hacky collapse titles for the layout units **/
+
+div.collapseTitle {	
+	display: block;
+	position: absolute;
+	width: auto;
+}
+
+div.leftCollapseTitle, div.rightCollapseTitle {
+	top: 50%;
+}
+
+div.bottomCollapseTitle, div.topCollapseTitle {
+	width: 100%;
+	text-align: center;
+}
+
+div.collapseTitle p {	
+	position: relative;
+	z-index: 0;
+
+	white-space: nowrap;
+	font-variant: small-caps;
+	font-size: 20px;
+	letter-spacing: 4px;
+	word-spacing: 20px;
+	font-weight: bold;
+}
+
+div.collapseTitle p.left {
+	left: -50%;
+
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    -o-transform-origin: 50% 0%;
+}
+
+div.collapseTitle p.right {
+    left: -50%;
+    
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+}
+
+div.collapse {
+	z-index: 1;
+}
+
+
+/** Alert panel **/
+
+/* Alert panel image */
+#alertPanelIcon {
+	float: left;
+	width: 100px;
+	margin-right: 10px;
+}
+
+/* Alert panel body */
+div#alertPanelBody {
+	text-align: left;
+}
+
+/* Alert panel button */
+div#alertPanelButtonDiv {
+	clear: both; /* Position it below the floating icon and text. */
+}
+
+
+/** Workflow chooser **/
+
+.workflowChooserItemSelected, .ListUtil-Selected {
+	border: 1px solid black;
+	padding: 3px;
+	margin: 3px;
+	cursor: default;
+	background: #336699;
+    color: #FFFFFF;
+}
+
+.workflowChooserItemUnselected, .ListUtil-Unselected {
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+    cursor: pointer;
+    background: #B3D4FF;
+    color: #000000;
+}
+
+
+/** Tab view **/
+
+/* The outer "tab" divs.  I'm still not sure why this is required...something
+ * with the resizing not working 100% correctly. */
+.tabDiv {
+	min-height: 300px;
+	min-width: 400px;
+}
+
+
+/** Logger **/
+
+/* Logging skin changes */
+.yui-skin-sam .yui-log {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.yui-skin-sam .yui-log .yui-log-bd {
+    border: none;
+}
+
+.yui-skin-sam .yui-log .info {
+    background-color: #B3D4FF;
+    color: #000000;
+}
+
+/* Hide some parts of the logger. */
+.yui-skin-sam .yui-log .yui-log-btns,
+.yui-skin-sam .yui-log .yui-log-hd,
+.yui-skin-sam .yui-log .yui-log-ft {
+    display: none;
+}
+
+/* Comment Module */
+/* We're not using this right now. */
+/*
+div.WireIt-Container.WiringEditor-module-comment { width: 200px; }
+div.WireIt-Container.WiringEditor-module-comment div.body { background-color: #EEEE66; }
+div.WireIt-Container.WiringEditor-module-comment div.body textarea { background-color: transparent; font-weight: bold; border: 0; }
+*/

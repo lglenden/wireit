@@ -1,0 +1,42 @@
+/**
+ * MultiPortService.css
+ *
+ * This file contains style definitions related to multi-port services.
+ *
+ * @author Laura
+ *
+ */
+
+/** The body of the service **/
+
+div.MultiPortService div.body {
+	background: #3366CC;
+	height: 100%;
+}
+
+div.MultiPortService div.body img.serviceInfo {
+	position: relative;
+	right: -5px;
+	top: -5px;
+}
+
+/** Add and remove buttons **/
+img.MultiPortService-Add, img.MultiPortService-Remove {
+	cursor: pointer;
+	position: absolute;
+	bottom: -30px;
+}
+
+img.MultiPortService-Add {
+	right: 3px;
+}
+
+img.MultiPortService-Remove {
+	right: 22px;
+}
+
+/** Be able to select ports to delete **/
+
+div.MultiPortService .selectedPort {
+	background-color: yellow;
+}

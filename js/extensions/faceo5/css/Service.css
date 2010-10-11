@@ -1,0 +1,98 @@
+/**
+ * Service.css
+ *
+ * This file contains style definitions related to service containers.
+ * Some of these definitions also apply to data service containers.
+ *
+ * @author Laura
+ *
+ */
+
+/* Service container body */
+div.WireIt-Container div.body {
+    padding: 5px;
+    overflow: auto;
+}
+
+/* Service container header (with the service name) */
+div.WireIt-Container-ddhandle span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* only works in IE... */
+    /*width: 130px;*/ /* used to truncate the text */
+    /*display: inline-block;*/
+    height: 20px;
+    valign: top;
+}
+
+/* Info icon */
+div.WireIt-Container div.body img.serviceInfo {
+	float: right;
+	cursor: pointer;
+}
+
+/*
+ * Redefining the terminal style to faceo5's
+ * style... a triangle
+ */
+/*div.WireIt-Terminal {
+   width: 30px;
+   height: 30px;
+   cursor: pointer;   
+   position: absolute;
+   background: transparent url(../images/terminals4.png) no-repeat scroll 0 0;
+   z-index: 6;
+}*/
+
+/* For fields */
+
+div.inputEx-label {
+	text-align: left;
+}
+
+/* For wireable field terminals */
+
+div.WireIt-InputExTerminal {
+    float: left;
+    width: 21px;
+    height: 21px;
+    position: relative;
+}
+
+div.WireIt-InputExTerminal div.WireIt-Terminal {
+    left: -3px;
+}
+
+
+/* Drill down button */
+div.WireIt-Container-workflowdrilldownbutton {
+   background-image: url(../images/plus16.png);
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   top: 6px;
+   left: 30px;
+   cursor: pointer;
+}
+
+div.WireIt-Container-servicedrilldownbutton {
+   background-image: url(../images/plus16.png);
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   top: 6px;
+   left: 30px;
+   cursor: pointer;
+}
+
+
+/** Error highlighting **/
+div.errorHighlight {
+    background: transparent url(../images/terminals_error.png) no-repeat scroll;
+    background-position: 0 -60px;
+}
+
+/** Customize style for selected container **/
+div.Service-Container-focused {
+    border: 3px solid green;
+}

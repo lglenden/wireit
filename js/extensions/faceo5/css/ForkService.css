@@ -1,0 +1,15 @@
+/**
+ * MultiPortService.css
+ *
+ * This file contains style definitions related to the fork service.
+ *
+ * @author Laura
+ *
+ */
+
+/* Special formatting for terminals that aren't available yet. */
+div.ForkService-UnavailableTerm {
+    background-position: 0 0;
+    background: transparent url(../images/terminals_unavailable.png) no-repeat scroll;
+    cursor: default;
+}

@@ -1,0 +1,40 @@
+/**
+ * ExecutePerspective.css
+ *
+ * This file contains style definitions related to the execute perspective.
+ *
+ * @author Laura
+ *
+ */
+
+/**
+ * When we're in view mode, have an icon for hovering.
+ */
+ div.WireIt-Layer div.nonDraggable div.viewModeTerm {
+    cursor: url(../images/cursors/view_interm.png), pointer;
+}
+
+/**
+ * When we've clicked a terminal in view mode.
+ */
+ div.WireIt-Layer div.nonDraggable div.viewModeSelectedTerm {
+	background: url(../images/view_bg.png) no-repeat center center;
+}
+
+/**
+ * When we're in execution mode, have an pointer when hovering over services.
+ */
+div.WireIt-Layer div.breakHover * {
+    cursor: pointer;
+    cursor: hand;
+}
+
+/**
+ * This will be the indicator of the service having a breakpoint.
+ */
+img.breakSet {
+	position: absolute;
+	top:-14px;
+	right: -14px;
+	float: left;
+}

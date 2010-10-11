@@ -1,0 +1,47 @@
+/**
+ * DataService.css
+ *
+ * This file contains style definitions related to data services containers.
+ *
+ * @author Laura
+ *
+ */
+
+div.Cylinder {
+	text-align: center;
+}
+
+/* Body div of a data service */
+div.Cylinder div.body {
+    text-align: center;
+    width: 100%;
+    height: 100%; /* 40px; */
+    padding: 0px;
+    overflow: visible;
+}
+
+/* Info icon */
+div.Cylinder div.body img.serviceInfo {
+    float: none;
+    position: relative;
+    right: 0px;
+    bottom: 16px;
+}
+
+/* Switch icon */
+div.Cylinder div.body img.switch {
+    position: relative;
+    right: 16px;
+    bottom: 0px;
+    cursor: pointer;
+}
+
+/* Text label on a data service */
+div.DataService-Label span {
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: move;
+    display: block;
+    text-align: center;
+}

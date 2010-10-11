@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Workflow Management Tool</title>
+
+<link rel="shortcut icon" href="favicon.ico"> 
+
+<!-- YUI CSS -->
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/assets/skins/sam/skin.css" />
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/treeview/assets/skins/sam/treeview.css">
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/slider/assets/skins/sam/slider.css">
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/logger/assets/skins/sam/logger.css">
+<link rel="stylesheet" type="text/css" href="../wireit-lib/yui/tabview/assets/skins/sam/tabview.css" />
+
+
+<!-- YUI-accordion CSS -->
+<link rel="stylesheet" type="text/css" href="../wireit-lib/accordionview/assets/skins/sam/accordionview.css" />
+
+<!-- InputEx CSS -->
+<link type='text/css' rel='stylesheet' href='../wireit-lib/inputex/css/inputEx.css' />
+
+<!-- WireIt CSS -->
+<link rel="stylesheet" type="text/css" href="../wireit-css/WireIt.css" />
+<link rel="stylesheet" type="text/css" href="../wireit-css/WireItEditor.css" />
+
+<!-- to enable firebug lite for IE testing -->
+<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script> -->
+
+<!-- YUI javascript -->
+<script type="text/javascript" src="../wireit-lib/yui/utilities/utilities.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/resize/resize-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/layout/layout-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/container/container_core-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/container/container-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/json/json-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/button/button-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/menu/menu-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/tabview/tabview-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/logger/logger.js"></script> 
+<script type="text/javascript" src="../wireit-lib/yui/slider/slider-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/selector/selector.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/treeview/treeview-min.js" ></script>
+<!-- Uploader -->
+<script type="text/javascript" src="../wireit-lib/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/element/element-min.js"></script>
+<script type="text/javascript" src="../wireit-lib/yui/uploader/uploader-min.js"></script>
+
+
+<!-- YUI-Accordion javascript -->
+<script src="../wireit-lib/accordionview/accordionview.js"  type='text/javascript'></script>
+<script src="AccordionViewExt.js"  type='text/javascript'></script>
+
+<!-- InputEx javascript -->
+<script src="../wireit-lib/inputex/js/inputex.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/Field.js"  type='text/javascript'></script>
+
+<!-- script src="../wireit-js/util/inputex/WirableField-beta.js" type="text/javascript"></script -->
+<script type="text/javascript" src="WireableField.js"></script>
+
+<script src="../wireit-lib/inputex/js/Group.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/Form.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/Visus.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/StringField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/PasswordField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/Textarea.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/SelectField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/EmailField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/UrlField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/ListField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/CheckBox.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/InPlaceEdit.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/FileField-beta.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/RadioField.js"  type='text/javascript'></script>
+<script src="../wireit-lib/inputex/js/fields/CombineField.js"  type='text/javascript'></script>
+
+<!-- WireIt javascript -->
+<!--[if IE]><script type="text/javascript" src="../wireit-lib/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="../wireit-js/WireIt.js"></script>
+<script type="text/javascript" src="../wireit-js/CanvasElement.js"></script>
+<script type="text/javascript" src="../wireit-js/Wire.js"></script>
+<script type="text/javascript" src="../wireit-js/Terminal.js"></script>
+<script type="text/javascript" src="../wireit-js/util/DD.js"></script>
+<script type="text/javascript" src="../wireit-js/util/DDResize.js"></script>
+<script type="text/javascript" src="../wireit-js/Container.js"></script>
+<script type="text/javascript" src="../wireit-js/Layer.js"></script>
+<script type="text/javascript" src="../wireit-js/util/inputex/FormContainer-beta.js"></script>
+<script type="text/javascript" src="../wireit-js/LayerMap.js"></script>
+<script type="text/javascript" src="../wireit-js/WiringEditor.js"></script>
+<script type="text/javascript" src="../wireit-js/ImageContainer.js"></script>
+<script type="text/javascript" src="../wireit-js/InOutContainer.js"></script>
+<script type="text/javascript" src="../wireit-js/adapters/json-rpc.js"></script>
+
+<!--  FACEO5 javascript -->
+<script type="text/javascript" src="wfeditor.js"></script>
+<script type='text/javascript' src='/wftool/dwr/engine.js'></script>
+<script type='text/javascript' src='/wftool/dwr/util.js'></script>
+<script type='text/javascript' src='/wftool/dwr/interface/WfFacade.js'></script>
+<script type='text/javascript' src='/wftool/dwr/interface/AnalysesFacade.js'></script>
+<script type="text/javascript" src="adapters/DWRAdapter.js"></script>
+<script type="text/javascript" src="WorkflowEditor.js"></script>
+<script type="text/javascript" src="util/util.js"></script>
+<script type="text/javascript" src="Palette.js"></script>
+<script type="text/javascript" src="Service.js"></script>
+<script type="text/javascript" src="DataService.js"></script>
+<script type="text/javascript" src="Perspective.js"></script>
+<script type="text/javascript" src="ComposePerspective.js"></script>
+<script type="text/javascript" src="ExecutePerspective.js"></script>
+<script type="text/javascript" src="AnalyzePerspective.js"></script>
+<script type="text/javascript" src="Util.js"></script>
+<script type="text/javascript" src="util/FilterUtil.js"></script>
+<script type="text/javascript" src="GroupExt.js"></script>
+<script type="text/javascript" src="TerminalExt.js"></script>
+<script type="text/javascript" src="PackageContainer.js"></script>
+<script type="text/javascript" src="WorkflowContainer.js"></script>
+<script type="text/javascript" src="WorkflowManager.js"></script>
+<script type="text/javascript" src="WorkflowLink.js"></script>
+<script type="text/javascript" src="MultiPortService.js"></script>
+<script type="text/javascript" src="ForkService.js"></script>
+<script type="text/javascript" src="UIService.js"></script>
+<script type="text/javascript" src="CommentContainer.js"></script>
+<script type="text/javascript" src="MultiAccordionView.js"></script>
+<script type="text/javascript" src="DataCreator.js"></script>
+<script type="text/javascript" src="CommandStack.js"></script>
+<script type="text/javascript" src="command/Command.js"></script>
+<script type="text/javascript" src="command/CommandConnectPort.js"></script>
+<script type="text/javascript" src="command/CommandDisconnectPort.js"></script>
+<script type="text/javascript" src="command/CommandAddService.js"></script>
+<script type="text/javascript" src="command/CommandRemoveService.js"></script>
+<script type="text/javascript" src="command/CommandMoveService.js"></script>
+<script type="text/javascript" src="command/CommandChangeParameter.js"></script>
+<script type="text/javascript" src="command/CommandChangeWorkflowInfo.js"></script>
+<script type="text/javascript" src="command/CommandChangeDynamicPorts.js"></script>
+
+<!--  FACEO5 CSS -->
+<link rel="stylesheet" type="text/css" href="../css/Service.css" />
+<link rel="stylesheet" type="text/css" href="../css/DataService.css" />
+<link rel="stylesheet" type="text/css" href="../css/Palette.css" />
+<link rel="stylesheet" type="text/css" href="../css/ComposePerspective.css" />
+<link rel="stylesheet" type="text/css" href="../css/AnalyzePerspective.css" />
+<link rel="stylesheet" type="text/css" href="../css/WorkflowEditor.css" />
+<link rel="stylesheet" type="text/css" href="../css/ExecutePerspective.css" />
+<link rel="stylesheet" type="text/css" href="../css/PackageContainer.css" />
+<link rel="stylesheet" type="text/css" href="../css/MultiPortService.css" />
+<link rel="stylesheet" type="text/css" href="../css/ForkService.css" />
+<link rel="stylesheet" type="text/css" href="../css/CommentContainer.css" />
+
+<!-- FACEO5 IE CSS -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="../css/IE8.css" />
+<![endif]-->
+
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="../css/IE7.css" />
+<![endif]-->
+
+<!-- Initialization javascript. -->
+<script>
+
+// InputEx needs a correct path to this image
+inputEx.spacerUrl = "/inputex/trunk/images/space.gif";
+
+// Call wfeditor.init when the page is ready.
+YAHOO.util.Event.onDOMReady(wfeditor.init, wfeditor, true);
+
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.logProgress.
+ *
+ * @method logProgress
+ * @param {String} progressMessage The message to log.
+ */
+function logProgress(progressMessage) {
+	editor.logProgress(progressMessage);
+}
+
+/**
+ * This function is available to the backend.
+ * See ExecutePerspective.updateExecuteProgress.
+ *
+ * @method updateExecuteProgress
+ * @param {int} serviceModuleID The ID of the service that's being executed.
+ */
+function updateExecuteProgress(serviceModuleID) {
+	editor.executePerspective.updateExecuteProgress(serviceModuleID);
+}
+
+
+/**
+ * This function is available to the backend.
+ * @method endWorkflowCalled
+ */
+function endWorkflowCalled() {
+	editor.executePerspective.isExecuting = false;
+}
+
+/**
+ * This function is available to the backend.
+ * @method executeWorkflowFailure
+ */
+function executeWorkflowFailure(){
+	editor.executePerspective.executeWorkflowFailure();
+}
+
+/**
+ * This function is available to the backend.
+ * @method startWorkflowExecutionCalled
+ */
+function startWorkflowExecutionCalled() {
+    editor.executePerspective.isExecuting = true;
+    if(editor.executePerspective.executeLoadPanel.isShown) {
+    	editor.executePerspective.executeLoadPanel.isShown = false;
+    	editor.executePerspective.executeLoadPanel.hide();
+    }
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.highlightService.
+ *
+ * @method highlightService
+ */
+function highlightService(perspective, serviceModuleId, color) {
+	editor.highlightService(perspective, serviceModuleId, color);
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.highlightPort.
+ *
+ * @method highlightPort
+ */
+function highlightPort(perspective, serviceModuleId, portName, color) {
+    editor.highlightPort(perspective, serviceModuleId, portName, color);
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.errorHighlightPort.
+ *
+ * @method errorHighlightPort
+ */
+function errorHighlightPort(perspective, serviceModuleId, portName) {
+	editor.errorHighlightPort(perspective, serviceModuleId, portName);
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.clearHighlights.
+ *
+ * @method clearHighlights
+ */
+function clearHighlights(perspective) {
+    editor.clearHighlights(perspective);
+}
+
+ /**
+  * This function is available to the backend.
+  * See WorkflowEditor.alert.
+  *
+  * @method showMessage
+  * @param {String} msg The message to show.
+  */
+function showErrorMessage(msg, header) {
+	editor.error(msg,header);
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.appendToExecutionFooter.
+ *
+ * @method appendToExecutionFooter
+ * @param {String} msg The message to append.
+ * @param {Number || null} moduleId The ID of the service that the message is associated with, if any.
+ * @param {String || null} port The name of the port that the message is associated with, if any.
+ */
+function appendToExecutionFooter(msg, moduleId, port) {
+	editor.appendToExecutionFooter(msg, moduleId, port);
+}
+
+/**
+ * This function is available to the backend.
+ * See WorkflowEditor.executeUIService.
+ *
+ * @method executeUIService
+ * @param uiModel {String} The string of the UI model for the UI service.
+ * @param contextId {Number} The context id for the execution.
+ */
+function executeUIService(uiModel, contextId) {
+    editor.executeUIService(uiModel, contextId);
+}
+
+</script>
+
+</head>
+
+<body class="yui-skin-sam">
+
+<!-- The very top of the window. -->
+<div id="top">
+<div class="logo">Workflow Management Tool</div>
+<div class="topright">
+    <span id="helpLink">[ <a href="help/index.html" target="_blank">User Manual</a> ]</span>
+    <span id="buildNum"></span>
+    <span>[ FACEO5 ]</span>
+</div>
+</div>
+
+<!-- The div where the workflow chooser will be instantiated. -->
+<div id="workflowChooser">
+</div>
+
+<!-- The div where the tab view will be instantiated. -->
+<div id="tabView"></div>
+
+<!-- The div where the logger will be instantiated. -->
+<div id="logger"></div>
+
+<!-- The HTML for the help panel. -->
+<div id="helpPanel">
+    <div class="hd">Workflow Management Tool Help</div>
+    <div class="bd" style="text-align: left;">
+        <p>Hi!</p>
+    </div>
+</div>
+
+<!-- The HTML for the login panel. -->
+<div id="loginPanel">
+    <div class="hd">Workflow Management Tool Login</div>
+    <div class="bd" style="text-align: left;">
+        <div id="loginForm"></div>
+        <div id="loginBottom" style="text-align: center"></div>
+        <div id="loginStatus" style="font-weight: bold;">Initializing...</div>
+        <center><img src="../images/loading.gif" id="loginLoading" /></center>
+    </div>
+</div>
+
+<!-- The HTML for the workflow loading panel. -->
+<div id="loadPanel">
+    <div class="hd">Select the workflow to load:</div>
+    <div class="bd">
+    Filter: <input type='text' id='loadFilter' />
+    <div id="loadPanelBody"></div>
+    </div>
+</div>
+
+<!-- The HTML for the alert panel. -->
+<div id="alertPanel">
+    <div id="alertPanelHeader" class="hd"></div>
+    <div class="bd">
+        <img id="alertPanelIcon" />
+        <div id="alertPanelBody"></div>
+        <div id="alertPanelButtonDiv">
+            <button id="alertPanelButton">Ok</button>
+        </div>
+    </div>
+</div>
+
+<!-- The HTML for the confirm panel. -->
+<div id="confirmPanel">
+    <div id="confirmPanelHeader" class="hd"></div>
+    <div class="bd">
+        <img id="confirmPanelIcon" />
+        <div id="confirmPanelBody"></div>
+        <div id="confirmPanelButtonDiv">
+            <button id="confirmPanelYesButton">Yes</button>
+            <button id="confirmPanelNoButton">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- The HTML for the prompt panel. -->
+<div id="promptPanel">
+    <div id="promptPanelHeader" class="hd"></div>
+    <div class="bd">
+        <img id="promptPanelIcon" />
+        <div id="promptPanelBody"></div>
+        <input type="text" id="promptPanelText" name="promptPanelText"></input>
+        <button id="promptPanelButton">Ok</button>
+    </div>
+</div>
+
+<!-- The HTML for the package prompt panel. -->
+<div id="packagePromptPanel">
+    <div class="hd">Enter values for packaged workflow</div>
+    <div class="bd">
+        <div id="packagePromptForm"></div>
+        <button id="packagePromptButton">Ok</button>
+    </div>
+</div>
+
+<!-- The HTML for the waiting panel. -->
+<div id="waitingPanel">
+    <div class="hd">Performing requested action, please wait...</div>
+    <div class="bd"><img src="../images/loading.gif" />
+    </div>
+</div>
+
+<!-- The HTML for the execution UI service. -->
+<div id="uiServicePanel">
+    <div class="hd">Enter values to continue execution:</div>
+    <div class="bd">
+        <div id="uiServicePanelForm"></div>
+        <button id="uiServicePanelButton">Ok</button>
+    </div>
+</div>
+
+</body>
+</html>
