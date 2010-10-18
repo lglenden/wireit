@@ -79,6 +79,9 @@ wfeditor.Service = function(options, layer) {
     		wfeditor.util.onServiceDragDrop(that);
     	});
     }
+    
+    //We set the correct handlers for the service.
+    this.setHandlers();
 };
 
 
@@ -377,6 +380,14 @@ YAHOO.lang.extend(wfeditor.Service, WireIt.FormContainer, {
 		}
 		this.options.propertiesfields = wfeditor.util.cloneObject(options.propertiesfields);
 		
+		// update propertiesfields' value using options.value
+		for(var i = 0; i < this.options.propertiesfields.length; i++) {
+		    var key = this.options.propertiesfields[i].key;
+		    if(options.value && options.value[key] != null) {
+                this.options.propertiesfields[i].inputParams.value = options.value[key];
+		    }
+		}
+		
 		// The name of the container. Default faceo5Components
 		// TODO this should be passed in from the ComposePerspective when
 		// creating the service
@@ -445,7 +456,31 @@ YAHOO.lang.extend(wfeditor.Service, WireIt.FormContainer, {
         }
         
         //draw container body with stored body height
-        WireIt.sn(this.bodyEl, null, {height: this.options.bodyHeight+"px"});
+        var bodyHeightProp = (this.options.bodyHeight)
+            ? {height: this.options.bodyHeight+"px"}
+            : null;
+        WireIt.sn(this.bodyEl, null, bodyHeightProp);
+	},
+	
+	/**
+	 * This method will set the right handlers for the service. In IE, it happens that when a resize
+	 * and an dd handler are in the same service, we need to indicate what elements are not going to
+	 * behave as resize handlers.
+	 * 
+	 * @method setHandlers
+	 */
+	setHandlers: function() {     
+        // We will mark the span and img inside the DD handle to avoid it to behave as a resize
+        // Handle.
+        var spanTitle = YAHOO.util.Selector.query('span', this.ddHandle, true);
+        if (spanTitle) {
+            this.ddResize.addInvalidHandleId(spanTitle);
+        }
+        
+        var imgService = YAHOO.util.Selector.query('img', this.ddHandle, true);
+        if (imgService) {
+            this.ddResize.addInvalidHandleId(imgService);
+        }
 	},
 	
 	/**
@@ -839,6 +874,7 @@ YAHOO.lang.extend(wfeditor.Service, WireIt.FormContainer, {
 			
 			if(hasFieldWire) {
 				this.form.toggleCollapse();
+				this.options.collapsed = false;
 				return;
 			}
 		}

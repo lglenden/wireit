@@ -572,10 +572,8 @@ wfeditor.Perspective.prototype = {
 		 * @property {YAHOO.widget.Layout} layout
 		 */
         this.layout = new YAHOO.widget.Layout(this.options.id, this.options.layoutOptions);
+
 		this.layout.render();
-		
-		this.layout.on('beforeResize', this.editor.resizeTabs, this.editor, true);
-		
 		// Upload layer options and build
 		this.options.layerOptions.parentEl = YAHOO.util.Dom.get(this.options.layerOptions.parentEl);
 		
@@ -592,6 +590,20 @@ wfeditor.Perspective.prototype = {
 		this.layer.eventChanged.subscribe(this.onLayerChanged, this, true);
 	},
 	
+	/**
+	 * This method set the width and height for the layout that has the content of this perspective.
+	 * 
+	 * @method setResize
+	 * @param {Integer} iHeight The new height for the layout.
+	 * @param {Integer} iWidth The new width for the layout.
+	 */
+	setResize: function(iHeight, iWidth) {
+		this.layout.set('height', iHeight);
+		this.layout.set('width', iWidth);
+		
+		// Resize it to the new dimensions.
+		this.layout.resize();
+	},	
 	
 	/************************** LAYER METHODS **************************/
     /* These methods are related to interacting with the WireIt Layer  */
@@ -681,6 +693,9 @@ wfeditor.Perspective.prototype = {
      * @method onTabResized
      */
     onTabResized : function() { },
+
+
+
     
     
     /********************* WORKFLOW CHOOSER METHODS ********************/
@@ -1052,7 +1067,9 @@ wfeditor.Perspective.prototype = {
                 m.config.uniqueId = m.uniqueId;
                 m.config.type = m.type;
                 m.config.userServiceName = m.userServiceName;
-                    
+                
+                // to fix the "set value correctly on the right form bug"
+                m.config.value = m.value;  
                 // Add the container to the layer.
                 var container = wfeditor.util.addContainer(m.config, this.layer, readonly);
                 YAHOO.util.Dom.addClass(container.el,

@@ -343,6 +343,12 @@ YAHOO.lang.extend(wfeditor.AnalyzePerspective, wfeditor.Perspective, {
     	}
     	
     	this.analyses[index].fields = fields;
+    	
+    	// When we receive the parameters for the first analysis, show it in the panel.
+    	if(index == 0) {
+    		this.analysesList.setIndex(index);
+    		this.showAnalysis();
+    	}
     },
     
     

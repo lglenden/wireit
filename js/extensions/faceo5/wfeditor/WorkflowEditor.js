@@ -216,7 +216,6 @@ wfeditor.WorkflowEditor = function(options) {
     // Take care of horrible resizing things.. :(
     this.outerLayout.on('resize', this.resizeTabView, this, true);
     this.resizeTabView();
-    this.resizeTabs();
     
     /**
      * This is the panel that holds the "help" functionality.  Right now this is
@@ -700,6 +699,9 @@ wfeditor.WorkflowEditor.prototype = {
         var el = YAHOO.util.Selector.query('div.yui-log-bd', r.body);
         YAHOO.util.Dom.setStyle(el, 'height', (h - 2) + 'px');
         YAHOO.util.Dom.setStyle(el, 'width', (w - 2) + 'px');
+        
+        // We now set the dimension for the tabs
+        this.resizeTabs();
     },
     
     /**
@@ -717,8 +719,11 @@ wfeditor.WorkflowEditor.prototype = {
             YAHOO.util.Dom.setStyle(el, 'height', newHeight);
             YAHOO.util.Dom.setStyle(el, 'width', newWidth);
         }
-        
+
+        // Once the tabs have their dimension set, we continue with the internal layouts
         for(var i = 0; i < this.perspectives.length; i++) {
+        	// let's set the values for the layouts.
+        	this.perspectives[i].setResize(newHeight, newWidth);
         	this.perspectives[i].onTabResized();
         }
     },

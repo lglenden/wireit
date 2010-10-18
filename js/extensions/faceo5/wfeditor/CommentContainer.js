@@ -55,6 +55,9 @@ wfeditor.CommentContainer = function(options, layer) {
             wfeditor.util.onServiceDragDrop(that);
         });
     }
+    
+    // We set the handlers for the container.
+    this.setHandlers();
 };
 
 YAHOO.lang.extend(wfeditor.CommentContainer, WireIt.FormContainer, {
@@ -106,5 +109,26 @@ YAHOO.lang.extend(wfeditor.CommentContainer, WireIt.FormContainer, {
      */
     onCloseButton: function(e, args) {
         wfeditor.util.onServiceCloseButton(this, e, args);
+    },
+    
+    /**
+     * This method will set the right handlers for the service. In IE, it happens that when a resize
+     * and an dd handler are in the same service, we need to indicate what elements are not going to
+     * behave as resize handlers.
+     * 
+     * @method setHandlers
+     */
+    setHandlers: function() {     
+        // We will mark the span and img inside the DD handle to avoid it to behave as a resize
+        // Handle.
+        var spanTitle = YAHOO.util.Selector.query('span', this.ddHandle, true);
+        if (spanTitle) {
+            this.ddResize.addInvalidHandleId(spanTitle);
+        }
+        
+        var imgService = YAHOO.util.Selector.query('img', this.ddHandle, true);
+        if (imgService) {
+            this.ddResize.addInvalidHandleId(imgService);
+        }
     }
 });

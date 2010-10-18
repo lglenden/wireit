@@ -152,16 +152,17 @@ YAHOO.lang.extend(wfeditor.PackageContainer, WireIt.Container, {
      * positions it appropriately.
      * 
      * @method addPackageTerminal
-     * @param termProxy {WireIt.TerminalProxy} The terminal proxy.
+     * @param terminal {WireIt.Terminal} The terminal.
      * @param e {Event} The drag and drop event, to get the position.
-     * @return {WireIt.TerminalProxy} The terminal proxy for the newly created package terminal.
+     * @return {WireIt.Terminal} The newly created package terminal.
      */
-	addPackageTerminal : function(termProxy, e) {        
+	addPackageTerminal : function(terminal, e) {        
+
         // Calculate the offset position based on whether it's an input or an output
-        var isInput = termProxy.terminal.options.direction[1] == -1;
+        isInput = terminal.options.direction[1] == -1;
         
         // Calculate whether it's a field that's been exposed
-        var isField = termProxy.terminal.options.direction[0] == -1;
+        isField = terminal.options.direction[0] == -1;
         
         // Do the positioning
         var offsetPos = {};        
@@ -188,7 +189,7 @@ YAHOO.lang.extend(wfeditor.PackageContainer, WireIt.Container, {
             },
             alwaysSrc: true,
             xtype: "WireIt.TerminalExt",
-            className: "WireIt-Terminal WireIt-ExposedTerminal", // add "exposed terminal" class
+            className: "WireIt-Terminal WireIt-ExposedTerminal" // add "exposed terminal" class
         };
         
         if(isField) {
@@ -198,7 +199,11 @@ YAHOO.lang.extend(wfeditor.PackageContainer, WireIt.Container, {
         } else {
         	termConfig.direction = [0, -1];
         }
-        
+
+        // Set readonly
+        var readOnly = this.layer.editor.editor.getCurrentPerspective().canvasReadOnly;
+        termConfig.editable = !readOnly;
+
         // Add the terminal to this container
         var layerTerm = this.addTerminal(termConfig);
          
@@ -224,7 +229,7 @@ YAHOO.lang.extend(wfeditor.PackageContainer, WireIt.Container, {
         // emit changed event
         this.onPackageChanged.fire();
 
-        return layerTerm.dd;
+        return layerTerm;
 	},
 	
     /**

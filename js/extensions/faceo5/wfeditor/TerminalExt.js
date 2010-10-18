@@ -129,7 +129,8 @@ lang.extend(WireIt.TerminalProxyExt, WireIt.TerminalProxy, {
       }
       
       if(targetPackage && !this.terminal.isAnyType) {
-         targetTerminalProxy = this.terminal.container.layer.editor.packageContainer.addPackageTerminal(this, e);
+         layerTerm = this.terminal.container.layer.editor.packageContainer.addPackageTerminal(this.terminal, e);
+         targetTerminalProxy = layerTerm.dd;
       }
 
       // Quit if no valid terminal found

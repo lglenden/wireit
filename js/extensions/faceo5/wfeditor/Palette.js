@@ -43,6 +43,8 @@ wfeditor.Palette = function(callbacks, options) {
 	 * - imageDirectory: The directory to find the palette images.  Default is "../images/icons/".
 	 * - searchCategories: An array of categories to include in the search panel.  Default is
 	 *   ["Services", "Data", "Workflows", "Utilities", "Thick Clients"].
+	 * - removeCategory: The category to remove from modules, or null for none.  Default is
+	 *   "NoCategory".
 	 * 
 	 * @property options
 	 * @type {Object}
@@ -332,6 +334,8 @@ wfeditor.Palette.prototype = {
         };
         
         this.options.imageDirectory = options.imageDirectory || "../images/icons/";
+        
+        this.options.removeCategory = "NoCategory";
 	},
 	
 	render : function() {
@@ -645,9 +649,6 @@ wfeditor.Palette.prototype = {
         for(var i = 0; i < modules.length; i++) {
             this.addModuleToList(modules[i]);
         }
-        
-        // Once we have the palette complete we can identify when NoCategory is the only child.
-        this.modulesAccordion.removeCategory("NoCategory");
 	},
 	
 	/**
@@ -657,12 +658,23 @@ wfeditor.Palette.prototype = {
      * @param {Object} module The module to add to the list.
      */
 	addModuleToList : function(module) {
+		// If there's a removeCategory, remove it from the categories list
+		var cat = module.category;
+		if(this.options.removeCategory) {
+		    for(var i = 0; i < cat.length; i++) {
+			    if(cat[i].labelText == this.options.removeCategory) {
+			    	cat.splice(i, 1);
+			    	i--;
+			    }
+		    }
+		}
+		
         var div = this._makeModuleEl(module, true);
 
         // Add to the accordion
         this.modulesAccordion.addItem({
             el: div,
-            categories: module.category
+            categories: cat
         });
         
         // Update the module object
@@ -804,9 +816,6 @@ wfeditor.Palette.prototype = {
         for(var i = 0; i < matchingModules.length; i++) {
             this.addModuleToList(matchingModules[i]);
         }
-        
-        // Remove NoCategory element if it's the only one.
-        this.modulesAccordion.removeCategory("NoCategory");
         
         // Expand panels
         if(matchingModules.length != this.modules.length){

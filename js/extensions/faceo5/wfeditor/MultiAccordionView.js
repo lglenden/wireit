@@ -122,53 +122,6 @@ wfeditor.MultiAccordionView.prototype = {
 	},
 	
 	/**
-	 * This method will locate the element indicated in the parameter and remove it if it's the
-	 * only child from the panel.
-	 * 
-	 * @method removeCategory
-	 * @param {String} strRemoveCategory The category name to remove (NoCategory).
-	 */
-	removeCategory : function(strRemoveCategory) {
-        // We check we have a value.
-        if (!strRemoveCategory) {
-            return;
-        }
-        
-        // We check that the type is string.
-        if (typeof strRemoveCategory != "string") {
-            return;
-        }
-        
-        // If the category is empty we do nothing.
-        if (strRemoveCategory == "") {
-        	return;
-        }
-        
-        /*
-         * For every panel in the accordion, we locate the element that only have one child and
-         * that child is NoCategory
-         */
-        for (strPanelId in this.panels) {
-        	var panels = this.panels[strPanelId];
-        	
-        	// If this panel has only 1 element and that element is the category to remove.
-        	if (panels.length == 1 && panels[0] == strRemoveCategory) {
-        	   // We locate the ul that contains the NoCategory element
-        	   var ulNoCat = YAHOO.util.Dom.get(strPanelId);
-        	   // We locate the destination DIV parent of NoCategory
-        	   var divContainer = ulNoCat.parentNode.parentNode;
-        	   // We locate the children of NoCategory
-        	   var divElements = ulNoCat.childNodes[0].childNodes[1].childNodes[0];
-        	   
-        	   // We remove what's contained inside NoCategory
-        	   divContainer.removeChild(divContainer.childNodes[0]);
-        	   // We append the list of NoCategory children to the parent of NoCategory
-        	   divContainer.appendChild(divElements);
-        	}
-      	}		
-	},
-	
-	/**
 	 * This method is a recursive helper method to addItem.
 	 * 
 	 * @method _addItem

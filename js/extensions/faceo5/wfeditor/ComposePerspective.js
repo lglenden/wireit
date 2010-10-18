@@ -422,45 +422,6 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
 		li.appendChild(temp);
 		accordian.appendChild(li);
 		
-		/*
-		temp = WireIt.cn("div");
-		
-		//Progress Bar
-		var fileNameBar = WireIt.cn("div", {id: "fileNameBar"});
-		var fileProgress = WireIt.cn("div",{id:"fileProgress"},{style:"border: black 1px solid; width:300px; height:40px;float:left"});
-		var fileName = WireIt.cn("div",{id:"fileName"},{style:"text-align:center; margin:5px; font-size:15px; width:290px; height:25px; overflow:hidden"});
-		var progressBar = WireIt.cn("div",{id:"progressBar"},{style:"width:300px;height:5px;background-color:#CCCCCC"});
-		fileProgress.appendChild(fileName);
-		fileProgress.appendChild(progressBar);
-		
-		//SelectFile and Upload Buttons
-		
-	    var uploaderUI = WireIt.cn("div",{id:"uploaderUI"},{style:"width:100px;height:40px;margin-left:5px;float:left"});
-		
-		var uploadButton = WireIt.cn("div",{id:"uploadButtonId"},{style:"float:left"});
-		YAHOO.util.Dom.addClass(uploadButton,"uploadButton");
-		var rolloverButtonforUpload = WireIt.cn("a",{id: "rolloverButtonId", href: "#", onClick: "editor.composePerspective.upload(); return false;"});
-		YAHOO.util.Dom.addClass(rolloverButtonforUpload,"rolloverButton");
-		uploadButton.appendChild(rolloverButtonforUpload);
-		
-	    var clearButton = WireIt.cn("div",{id:"clearButtonId"},{style:"float:left"});
-	    YAHOO.util.Dom.addClass(clearButton,"clearButton");
-		var rolloverButtonforClear = WireIt.cn("a",{id: "rolloverButtonforClearId", href: "#", onClick: "editor.composePerspective.handleClearFiles(); return false;"});
-		YAHOO.util.Dom.addClass(rolloverButtonforClear,"rolloverButton");
-		clearButton.appendChild(rolloverButtonforClear);
-  
-	    fileNameBar.appendChild(fileProgress);
-	    fileNameBar.appendChild(uploaderUI);
-	    fileNameBar.appendChild(uploadButton);
-	    fileNameBar.appendChild(clearButton);
-		temp.appendChild(fileNameBar);
-		
-		//temp.appendChild(WireIt.cn("div", {id: this.options.idDataProperties}));
-		li.appendChild(temp);
-		accordian.appendChild(li);
-		// END ADDED BY NINA //
-		 */
-		
 		right.appendChild(accordian);
 		return right;
 	},
@@ -566,23 +527,6 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
          * Instantiate the Data Uploader
          */
          
-         /*
-         YAHOO.widget.Uploader.SWFURL = "../wireit-lib/yui/uploader/assets/uploader.swf";   
-         this.uploader = new YAHOO.widget.Uploader("uploaderUI" , "../images/buttons/selectFileButton.png" );    
-         
-         this.uploader.addListener('contentReady', this.handleContentReady, this, true);   
-         this.uploader.addListener('fileSelect', this.onFileSelect, this, true); 
-       //  this.uploader.addListener('uploadStart', this.onUploadStart, this, true);   
-         this.uploader.addListener('uploadProgress', this.onUploadProgress, this, true);   
-      //   this.uploader.addListener('uploadCancel', this.onUploadCancel, this, true);   
-         this.uploader.addListener('uploadComplete', this.onUploadComplete, this, true);   
-      //   this.uploader.addListener('uploadCompleteData', this.onUploadResponse, this, true);   
-      //   this.uploader.addListener('uploadError', this.onUploadError, this, true);     
-          
-         this.fileID;
-         this.fileList;
-         this.listofFiles; 
-         */
         this.dataCreator = new wfeditor.DataCreator(this.options.idDataProperties, {});
         
         // Get rid of the border around the compose "package"
@@ -955,6 +899,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         if(name == "") {
             var that = this;
             var props = this.propertiesForm.getValue();
+            
             this.prompt({
                 msg: "Cannot save a workflow with no name!  Please enter one:",
                 callback: function(value) {
@@ -1127,6 +1072,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
                             this.editor, containers, wires, 
                             this.layer, this.canvasReadOnly);
                         this.propertiesForm.enable();
+                        this.updatePackageName();
                     }
 
                     this.markSaved();
@@ -1536,7 +1482,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         // Do call to backend
         this.editor.adapter.searchServices(filterKey, categorizeKey, {
             success: function(jsonString) {
-                var jsonVar = eval('(' + jsonString + ')');                
+                jsonString = wfeditor.util.replaceHTMLChars(jsonString)
+                var jsonVar = YAHOO.lang.JSON.parse(jsonString);             
+//                var jsonVar = eval('(' + jsonString + ')');                
                 jsonVar.language = jsonVar.language || this.options.languageName;
                 this.editor.parseLanguage(jsonVar);
                 
@@ -1563,7 +1511,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         // Do call to backend
         this.editor.adapter.getReorganizedServices(filterKey, categorizeKey, {
             success: function(jsonString) {
-                var jsonVar = eval('(' + jsonString + ')');                
+                jsonString = wfeditor.util.replaceHTMLChars(jsonString)
+                var jsonVar = YAHOO.lang.JSON.parse(jsonString);             
+//                var jsonVar = eval('(' + jsonString + ')');                
                 jsonVar.language = jsonVar.language || this.options.languageName;
                 this.editor.parseLanguage(jsonVar);
 
@@ -1783,8 +1733,12 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
     	if(name == null || name == "") {
     		name = "New Workflow";
     	}
+    	var title = name;
+    	if(this.canvasReadOnly == true) {
+    	    title = title + " (read only)";
+    	}
         var nameEl = YAHOO.util.Dom.get(this.options.idCenterTitle);
-        nameEl.innerHTML = name;
+        nameEl.innerHTML = title;
         
         // callback to let the editor know that the name changed
         this.editor.onWorkflowNameChanged(name);
@@ -1819,7 +1773,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         	}
             
             // Create a new packaging terminal (and proxy) on the package border
-            var packageTermProxy = this.packageContainer.addPackageTerminal(term.dd, {});
+            var layerTerm = this.packageContainer.addPackageTerminal(term, {});
             
             var parentEl = term.parentEl.parentNode;
             if(term.container) {
@@ -1827,8 +1781,8 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             }
             
             // Create a new wire between the package terminal and the target terminal.
-            var w = new WireIt.Wire(packageTermProxy.terminal, term, parentEl,
-                packageTermProxy.terminal.options.wireConfig);
+            var w = new WireIt.Wire(layerTerm, term, parentEl,
+                layerTerm.options.wireConfig);
                 
             // Draw the wire.
             w.redraw();
@@ -1898,13 +1852,17 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      */
     onWorkflowChanged : function(newWorkflow) {
         
+        // Set canvasReadOnly: this flag is used when we set the properties, as it is reflected
+        // to the workflow's title, which needs to be appended "readonly" when it is true
+        this.canvasReadOnly = newWorkflow.canvasReadOnly;
+
         wfeditor.ComposePerspective.superclass.onWorkflowChanged.call(this, newWorkflow);
 
         // Show wait panel
         this.showWait();
         
         this.preventLayerChangedEvent = true;
-
+        
         // Set containers and wires
         var wires = newWorkflow.wires;
         if(wires.length > 0) {
