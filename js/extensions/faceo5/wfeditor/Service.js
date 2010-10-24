@@ -112,8 +112,12 @@ wfeditor.Service.createTerminals = function(service) {
     // Create input ports.
     for(i = 0; i < service.options.inputPorts.length; i++) {
         port = service.options.inputPorts[i];
+        //add allowedTypes to display bug 557
+        var portInfo = port.name;
+        if(port.allowedTypes)
+            portInfo = portInfo+":"+port.allowedTypes;
         config = {
-            name: port.name,
+            name:portInfo,
             direction: [0, -1],
             ddConfig: {
                 type: port.type,
@@ -128,8 +132,12 @@ wfeditor.Service.createTerminals = function(service) {
     // Create output ports.
     for(i = 0; i < service.options.outputPorts.length; i++) {
         port = service.options.outputPorts[i];
+        //add allowedTypes to display bug 557
+        var portInfo = port.name;
+        if(port.allowedTypes)
+            portInfo = portInfo+":"+port.allowedTypes;
         config = {
-            name: port.name,
+            name: portInfo,
             direction: [0, 1],
             ddConfig: {
                 type: port.type,
