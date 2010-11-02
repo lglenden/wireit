@@ -29,7 +29,6 @@ WireIt.TerminalProxyExt = function(terminal, options) {
 
 lang.extend(WireIt.TerminalProxyExt, WireIt.TerminalProxy, {
 	
-   
    /**
     * This method will handle the drag event on a terminal.
     * 
@@ -388,6 +387,21 @@ lang.extend(WireIt.TerminalExt, WireIt.Terminal, {
       this.options.offsetPosition = options.offsetPosition;
       this.options.alwaysSrc = lang.isUndefined(options.alwaysSrc) ? false : options.alwaysSrc;
       this.options.ddConfig = options.ddConfig || {};
+
+       var portInfo = options.name;
+       if(options.ddConfig){
+           portInfo = portInfo + ":" + options.ddConfig.allowedTypes;
+       }
+       this.options.portInfo = portInfo;
+   },
+   
+   /**
+    * This function overrides the parent class to render the terminal.
+    * @method render
+    */
+   render: function() {
+      WireIt.TerminalExt.superclass.render.call(this);
+      if(this.options.portInfo) { this.el.title = this.options.portInfo; }
    },
    
     /**

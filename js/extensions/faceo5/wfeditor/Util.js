@@ -518,7 +518,7 @@ wfeditor.util.addContainer = function(containerConfig, layer, readOnly) {
     containerConfig.draggable = !readOnly;
     containerConfig.resizeable = !readOnly;
     containerConfig.close = !readOnly;
-    containerConfig.readOnly = !readOnly;
+    containerConfig.readOnly = readOnly;
     
     // Add "nonDraggable" to the list of CSS classes.  This lets us
     // change the cursor so that it doesn't look like the user can move around

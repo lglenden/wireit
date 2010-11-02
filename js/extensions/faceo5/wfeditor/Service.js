@@ -112,12 +112,8 @@ wfeditor.Service.createTerminals = function(service) {
     // Create input ports.
     for(i = 0; i < service.options.inputPorts.length; i++) {
         port = service.options.inputPorts[i];
-        //add allowedTypes to display bug 557
-        var portInfo = port.name;
-        if(port.allowedTypes)
-            portInfo = portInfo+":"+port.allowedTypes;
         config = {
-            name:portInfo,
+            name: port.name,
             direction: [0, -1],
             ddConfig: {
                 type: port.type,
@@ -132,12 +128,8 @@ wfeditor.Service.createTerminals = function(service) {
     // Create output ports.
     for(i = 0; i < service.options.outputPorts.length; i++) {
         port = service.options.outputPorts[i];
-        //add allowedTypes to display bug 557
-        var portInfo = port.name;
-        if(port.allowedTypes)
-            portInfo = portInfo+":"+port.allowedTypes;
         config = {
-            name: portInfo,
+            name: port.name,
             direction: [0, 1],
             ddConfig: {
                 type: port.type,
@@ -481,12 +473,12 @@ YAHOO.lang.extend(wfeditor.Service, WireIt.FormContainer, {
         // We will mark the span and img inside the DD handle to avoid it to behave as a resize
         // Handle.
         var spanTitle = YAHOO.util.Selector.query('span', this.ddHandle, true);
-        if (spanTitle) {
+        if (spanTitle && this.ddResize) {
             this.ddResize.addInvalidHandleId(spanTitle);
         }
         
         var imgService = YAHOO.util.Selector.query('img', this.ddHandle, true);
-        if (imgService) {
+        if (imgService && this.ddResize) {
             this.ddResize.addInvalidHandleId(imgService);
         }
 	},
