@@ -1060,13 +1060,28 @@ wfeditor.WorkflowEditor.prototype = {
      * @method updateDataProjects
      */
     updateDataProjects : function() {
-    	// Tell children to update data list
+    	// Tell children to update data projects list
         for(var i = 0; i < this.perspectives.length; i++) {
             if(this.perspectives[i].updateDataProjects) {
                 this.perspectives[i].updateDataProjects(this.dataProjects);
             }
         } 
     },
+    
+    /**
+     * This method is called when the backend says to update the data types.
+     * It calls the children as needed.
+     * 
+     * @method updateDataTypes
+     */
+     updateDataTypes : function() {
+        // Tell children to update data types list
+        for(var i = 0; i < this.perspectives.length; i++) {
+            if(this.perspectives[i].updateDataTypes) {
+                this.perspectives[i].updateDataTypes(this.dataTypes);
+            }
+        }
+     },
     
     /**
      * This method is called when the list of tags has been updated
@@ -1154,21 +1169,16 @@ wfeditor.WorkflowEditor.prototype = {
     	   this.updateModules();
     	}
     	
-    	// I used this to test.  We should take it out when the backend is ready.
-    	// TODO
-    	/*
-    	obj.dataProjects = [
-            {name: "Sudan",
-             categories: ["Lists", "Thesauri", "Reports"]},
-            {name: "Darfur",
-             categories: ["Lists", "Text", "Reports"]}
-        ];
-        */
-    	
-    	// Check for and update data
+    	// Check for and update data projects
     	if(obj.dataProjects) {
     		this.dataProjects = obj.dataProjects;
     		this.updateDataProjects();
+    	}
+    	
+    	// Check for and update data types
+    	if(obj.dataTypes) {
+    		this.dataTypes = obj.dataTypes;
+    		this.updateDataTypes();
     	}
     	
     	// Check for and update tags

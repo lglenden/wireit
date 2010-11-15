@@ -28,6 +28,7 @@ wfeditor.DataCreator = function(parent, options) {
 	/**
 	 * This property holds the configuration options for this widget.  It includes:
 	 * - topFormOptions inputEx form options for the top form
+	 * - typeFieldOptions inputEx field options for the type field
 	 * - fileFormOptions inputEx form options for the file form
 	 * - projCatFormOptions inputEx form options for the project/category form
 	 * 
@@ -51,6 +52,14 @@ wfeditor.DataCreator = function(parent, options) {
 	 * @type {inputEx.Group}
 	 */
 	this.topForm = null;
+	
+	/**
+	 * This property holds the "type" field.
+	 * 
+	 * @property typeField
+	 * @type {inputEx.SelectField}
+	 */
+	this.typeForm = null;
 	
 	/**
 	 * This property holds the file form.
@@ -142,6 +151,15 @@ wfeditor.DataCreator.prototype = {
             }
             ]
 		};
+		
+		this.options.typeFieldOptions = {
+            "label" : "Type:",
+            "name" : "type",
+            "required" : true,
+            "multiple" : true,
+            "selectOptions" : [""],
+            "selectValues" : [""]
+        };
 		
 		this.options.fileFormOptions = options.fileFormOptions || {
 			name: "fileForm",
@@ -244,6 +262,12 @@ wfeditor.DataCreator.prototype = {
 	    this.el.appendChild(topFormDiv);
 	    this.topForm = new inputEx.Group(this.options.topFormOptions);
 	    
+	    // Render the type field
+	    var typeFieldDiv = WireIt.cn("div");
+	    this.options.typeFieldOptions.parentEl = typeFieldDiv;
+	    this.el.appendChild(typeFieldDiv);
+	    this.typeField = new inputEx.SelectField(this.options.typeFieldOptions);
+	    
 	    // Set up the handler to hide the file form when it's output
 	    var kindField = this.topForm.getFieldByName("kind");
 	    kindField.updatedEvt.subscribe(this.onKindSwitch, this, true);
@@ -290,6 +314,9 @@ wfeditor.DataCreator.prototype = {
 			clickFnScope: this
 		});
 		this.el.appendChild(buttonDiv);
+		
+		// Update shown/hidden widgets.
+		this.onKindSwitch();
 	},
 	
 	/**
@@ -331,6 +358,22 @@ wfeditor.DataCreator.prototype = {
         // Recreate the projects/categories form
         this._createProjCatForm();
 	},
+	
+	/**
+	 * This method should be called by the outside code when the list of data has been updated.
+	 * 
+	 * @method updateTypes
+	 * @param {Array} types An array of the types.
+	 */
+	 updateTypes : function(types) {
+	     var div = this.options.typeFieldOptions.parentEl;
+	     div.innerHTML = "";
+	     
+	     this.options.typeFieldOptions.selectOptions = types.slice(0);
+	     this.options.typeFieldOptions.selectValues = types.slice(0);
+	     
+	     this.typeField = new inputEx.SelectField(this.options.typeFieldOptions);
+	 },
 	
 	/**
 	 * This method is used to (re-)create the file form.
@@ -375,11 +418,10 @@ wfeditor.DataCreator.prototype = {
 	 * @method onKindSwitch
 	 */
     onKindSwitch : function() {
-    	var display =
-    	    this.topForm.getFieldByName("kind").getValue() == "input" ?
-    	    "" : "none";
-    	this.options.fileFormOptions.parentEl.style.display = display;
-    	this.options.fileFormButtonsDiv.style.display = display;
+    	var input = this.topForm.getFieldByName("kind").getValue() == "input";
+    	this.options.fileFormOptions.parentEl.style.display = input ? "" : "none";
+    	this.options.fileFormButtonsDiv.style.display = input ? "" : "none";
+    	this.options.typeFieldOptions.parentEl.style.display = input ? "none" : "";
     },
 	
 	/**
@@ -398,6 +440,18 @@ wfeditor.DataCreator.prototype = {
         // Kind, name
         value.kind = this.topForm.getFieldByName("kind").getValue();
         value.name = this.topForm.getFieldByName("name").getValue();
+        
+        // Type
+        if(value.kind != "input") {
+        	var el = this.typeField.el;
+        	var types = [];
+        	for(var i = 0; i < el.options.length; i++) {
+        		if(el.options[i].selected) {
+        			types.push(el.options[i].value);
+        		}
+        	}
+        	value.types = types;
+        }
         
         // Projects
         

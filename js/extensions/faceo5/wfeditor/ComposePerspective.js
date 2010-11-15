@@ -1589,6 +1589,16 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
     	this.dataCreator.updateProjects(projects);
     },
     
+    /**
+     * This method should be called when the data types have been updated from the backend.
+     * 
+     * @method updateDataTypes
+     * @param {Array} types The data types.
+     */
+    updateDataTypes : function(types) {
+        this.dataCreator.updateTypes(types);
+    },
+    
     
     /************************** LAYER METHODS **************************/
     /* These methods are related to interacting with the WireIt Layer  */
