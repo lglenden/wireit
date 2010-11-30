@@ -26,6 +26,9 @@ WireIt.LayerMap = function(layer,options) {
    // Set the className
    this.element.className = this.options.className;
    
+   //set layerMap canvas id      
+   this.element.setAttribute("id",this.options.parentEl.id+"Canvas");    
+   
    this.initEvents();
    
    this.draw();
@@ -54,6 +57,7 @@ YAHOO.lang.extend(WireIt.LayerMap, WireIt.CanvasElement, {
       this.options.className = options.className || "WireIt-LayerMap";
       this.options.style = options.style || "rgba(0, 0, 200, 0.5)";
       this.options.lineWidth = options.lineWidth || 2;
+      this.options.layerMapId = this.options.parentEl.id+"Canvas";
    },
    
    
@@ -178,10 +182,19 @@ YAHOO.lang.extend(WireIt.LayerMap, WireIt.CanvasElement, {
     * @method draw
     */
    draw: function() {
-      var ctxt=this.getContext();
-      
+   	  //get canvas context
+      var canvasObj = document.getElementById(this.options.layerMapId);
+      var ctxt = canvasObj.getContext('2d');
+
       // Canvas Region
+      // save canvasRegion as a attribute
       var canvasRegion = Dom.getRegion(this.element);
+      if(typeof(canvasRegion)=='object'){
+        this.canvasRegion = canvasRegion;
+      }else{
+        canvasRegion = this.canvasRegion;
+      }
+
       var canvasWidth = canvasRegion.right-canvasRegion.left-4;
       var canvasHeight = canvasRegion.bottom-canvasRegion.top-4;
       
@@ -200,14 +213,12 @@ YAHOO.lang.extend(WireIt.LayerMap, WireIt.CanvasElement, {
       var viewportHeight = region.bottom-region.top;
       var viewportX = this.layer.el.scrollLeft;
       var viewportY = this.layer.el.scrollTop;
-      ctxt.strokeStyle= "rgb(200, 50, 50)";
-      ctxt.lineWidth=1;
       ctxt.strokeRect(viewportX*hRatio, viewportY*vRatio, viewportWidth*hRatio, viewportHeight*vRatio);
-   
-      // Draw containers and wires
       ctxt.fillStyle = this.options.style;
-      ctxt.strokeStyle= this.options.style;
-      ctxt.lineWidth=this.options.lineWidth;
+      ctxt.strokeStyle = this.options.style;
+      ctxt.lineWidth = this.options.lineWidth;
+      
+      // Draw containers and wires
       this.drawContainers(ctxt, hRatio, vRatio);
       this.drawWires(ctxt, hRatio, vRatio);
    },

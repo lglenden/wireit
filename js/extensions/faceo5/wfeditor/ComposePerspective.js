@@ -20,13 +20,13 @@
  * @param {wfeditor.WorkflowEditor} editor The parent workflow editor.
  */
 wfeditor.ComposePerspective = function(options, editor) {
-	/**
-	 * This property holds the instantiated palette for the perspective.
-	 * 
-	 * @property palette
-	 * @type {wfeditor.Palette}
-	 */
-	this.palette = null;
+    /**
+     * This property holds the instantiated palette for the perspective.
+     * 
+     * @property palette
+     * @type {wfeditor.Palette}
+     */
+    this.palette = null;
 
     // Used for unique workflow id of new workflows    
     this.globalCounter = 0;
@@ -40,54 +40,54 @@ wfeditor.ComposePerspective = function(options, editor) {
      */
     this.dataCreator = null;
 
-	// Call parent constructor.
-	wfeditor.ComposePerspective.superclass.constructor.call(this, options, editor);
+    // Call parent constructor.
+    wfeditor.ComposePerspective.superclass.constructor.call(this, options, editor);
 };
 
 YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
-	
-	/********************** INSTANTIATION METHODS **********************/
-	/* These methods are run when the perspective is instantiated.     */
-	/* The options are set, then the HTML is built.                    */
-	/*******************************************************************/
-	
-	/**
-	 * Sets the options for constructing this object, using defaults if none
-	 * are passed in.  For more information, see the superclass's setOptions
-	 * method and the properties of this class.
-	 * Overrides the parent class.
-	 * 
-	 * @method setOptions
-	 * @param {Object} options
-	 */
-	setOptions : function(options) {
+    
+    /********************** INSTANTIATION METHODS **********************/
+    /* These methods are run when the perspective is instantiated.     */
+    /* The options are set, then the HTML is built.                    */
+    /*******************************************************************/
+    
+    /**
+     * Sets the options for constructing this object, using defaults if none
+     * are passed in.  For more information, see the superclass's setOptions
+     * method and the properties of this class.
+     * Overrides the parent class.
+     * 
+     * @method setOptions
+     * @param {Object} options
+     */
+    setOptions : function(options) {
 
-		// Set the default title of the perspective.
-		// Used in the tab label.
-		if(!options.title) {
-			options.title = "Compose";
-		}
+        // Set the default title of the perspective.
+        // Used in the tab label.
+        if(!options.title) {
+            options.title = "Compose";
+        }
 
         // Call parent setOptions.
-		wfeditor.ComposePerspective.superclass.setOptions.call(this, options);
-		
-		
-		/* TOP OPTIONS */
-		
-		// Set layout's top unit options to defaults.
-		// Used to instantiate the YUI layout.
-		this.options.topUnitOptions = options.topUnitOptions || {};
-		YAHOO.lang.augmentObject(this.options.topUnitOptions, {
-			height: '40px',
-			gutter: '5px'
-		});
-		
-		
-		/* LEFT OPTIONS */
-		
-		// Set layout's left unit options to defaults.
+        wfeditor.ComposePerspective.superclass.setOptions.call(this, options);
+        
+        
+        /* TOP OPTIONS */
+        
+        // Set layout's top unit options to defaults.
         // Used to instantiate the YUI layout.
-		this.options.leftUnitOptions = options.leftUnitOptions || {};
+        this.options.topUnitOptions = options.topUnitOptions || {};
+        YAHOO.lang.augmentObject(this.options.topUnitOptions, {
+            height: '40px',
+            gutter: '5px'
+        });
+        
+        
+        /* LEFT OPTIONS */
+        
+        // Set layout's left unit options to defaults.
+        // Used to instantiate the YUI layout.
+        this.options.leftUnitOptions = options.leftUnitOptions || {};
         YAHOO.lang.augmentObject(this.options.leftUnitOptions, {
             width: '215px',
             resize: true,
@@ -98,20 +98,20 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             scroll: true,
             animate: true
         });
-		
-		// Set the drag-and-drop group that is used to drag-and-drop a module onto the
-		// layer (canvas).
-		this.options.ddModuleGroup = options.ddModuleGroup || "module";
-		
-		// Palette xtype.
-		this.options.paletteXtype = "wfeditor.Palette";
-		
-		
-		/* CENTER OPTIONS */
-		
-		// Set layout's center unit options to defaults.
+        
+        // Set the drag-and-drop group that is used to drag-and-drop a module onto the
+        // layer (canvas).
+        this.options.ddModuleGroup = options.ddModuleGroup || "module";
+        
+        // Palette xtype.
+        this.options.paletteXtype = "wfeditor.Palette";
+        
+        
+        /* CENTER OPTIONS */
+        
+        // Set layout's center unit options to defaults.
         // Used to instantiate the YUI layout.
-		this.options.centerUnitOptions = options.centerUnitOptions || {};
+        this.options.centerUnitOptions = options.centerUnitOptions || {};
         YAHOO.lang.augmentObject(this.options.centerUnitOptions, {
             gutter: '5px'
         });
@@ -164,7 +164,6 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             collapsible: true,
             expandable: true, // remove this parameter to open only one panel at a time
             width: 'auto',
-            expandItem: 0,
             animationSpeed: '0.3', 
             animate: true, 
             effect: YAHOO.util.Easing.easeBothStrong
@@ -177,24 +176,24 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         // Set the fields that are shown in the workflow properties.
         // Used to instantiate the inputEx form group.
         this.options.propertiesFields = options.propertiesFields || [
-        	{"type": "string", inputParams: {"name": "name", label: "Title", typeInvite: "Enter a title", maxLength: 255, regexp: /^[\w\d\s\._]*$/ } },
+            {"type": "string", inputParams: {"name": "name", label: "Title", typeInvite: "Enter a title", maxLength: 255, regexp: /^[\w\d\s\._]*$/ } },
             {"type": "text", inputParams: {"name": "description", label: "Description", cols: 30, rows: 4, typeInvite: "Enter a description"} }
         ];
         
         this.options.nPropertiesFields = this.options.propertiesFields.length;
         
         this.options.idDataProperties = options.idDataProerties || this.options.id + "DataProperties";
-	},
-	
-	/**
-	 * Builds and returns the HTML content for the top part of the layout.
-	 * Overrides the parent class.
-	 * 
-	 * @method buildContentTop
-	 * @return {HTMLElement} The top element to be used in the layout.
-	 */
-	buildContentTop : function() {
-		// Create top <div> element.
+    },
+    
+    /**
+     * Builds and returns the HTML content for the top part of the layout.
+     * Overrides the parent class.
+     * 
+     * @method buildContentTop
+     * @return {HTMLElement} The top element to be used in the layout.
+     */
+    buildContentTop : function() {
+        // Create top <div> element.
         var top = WireIt.cn("div", {id: this.options.idTop});
         
         // Create new button
@@ -206,12 +205,12 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         
         // Create open button
         this.openButton = this.createSplitButton({
-        	label: "Open",
-        	img: '../images/buttons/open.png',
-        	clickFn: this.onClickOpen,
-        	menu: [
-        	   {label: "Open and Replace", clickFn: this.onClickOpenReplace}
-        	]
+            label: "Open",
+            img: '../images/buttons/open.png',
+            clickFn: this.onClickOpen,
+            menu: [
+               {label: "Open and Replace", clickFn: this.onClickOpenReplace}
+            ]
         });
         
         // Create save button
@@ -223,13 +222,13 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
          * @type YAHOO.widget.Button
          */
         this.saveButton = this.createSplitButton({
-        	label: "Save",
-        	img: "../images/buttons/save.png",
-        	clickFn: this.onClickSave,
-        	menu: [
-        	   {label: "Save As", clickFn: this.onClickSaveAs},
-        	   {label: "Save All", clickFn: this.onClickSaveAll}
-        	]
+            label: "Save",
+            img: "../images/buttons/save.png",
+            clickFn: this.onClickSave,
+            menu: [
+               {label: "Save As", clickFn: this.onClickSaveAs},
+               {label: "Save All", clickFn: this.onClickSaveAll}
+            ]
         });
         
         // Create close button
@@ -303,7 +302,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         var temp = WireIt.cn("div", {id: "zoom-out-button"});
         var zoomButton = WireIt.cn("img", {src: "../images/zoom_out.png", title: "Zoom Out"});
         YAHOO.util.Event.addListener(zoomButton, "click", function(e) {
-        	this.zoomSlider.setValue(this.zoomSlider.getValue() + 25);
+            this.zoomSlider.setValue(this.zoomSlider.getValue() + 25);
         }, this, true);
         temp.appendChild(zoomButton);
         top.appendChild(temp);
@@ -325,9 +324,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         top.appendChild(temp);
         
         return top;
-	},
-	
-	
+    },
+    
+    
     /**
      * Builds and returns the HTML content for the left part of the layout.
      * Overrides the parent class.
@@ -335,15 +334,15 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method buildContentLeft
      * @return {HTMLElement} The left element to be used in the layout.
      */
-	buildContentLeft : function() {
-		// Create left <div> element
-		var left = WireIt.cn("div", {id: this.options.idLeft});
-		
-		// We will instantiate the palette later...
-		
-		return left;
-	},
-	
+    buildContentLeft : function() {
+        // Create left <div> element
+        var left = WireIt.cn("div", {id: this.options.idLeft});
+        
+        // We will instantiate the palette later...
+        
+        return left;
+    },
+    
     /**
      * Builds and returns the HTML content for the center part of the layout.
      * Overrides the parent class.
@@ -351,25 +350,25 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method buildContentCenter
      * @return {HTMLElement} The center element to be used in the layout.
      */
-	buildContentCenter : function() {
-		// Create the center <div> element
-		var center = WireIt.cn("div", {id: this.options.idCenter});
-		
-		// Create the center icon
-		var icon = WireIt.cn("div", {id: this.options.idCenterIcon});
-		icon.appendChild(WireIt.cn("img", {src: this.options.centerIcon}));
-		center.appendChild(icon);
-		
-		// Create the center title
-		center.appendChild(WireIt.cn("div", {id: this.options.idCenterTitle}, null, "New Workflow"));
-		
-		// Create the center layer -- just build the container for now, we will
-		// instantiate it later.
-		center.appendChild(WireIt.cn("div", {id: this.options.idLayer}));
-		
-		return center;
-	},
-	
+    buildContentCenter : function() {
+        // Create the center <div> element
+        var center = WireIt.cn("div", {id: this.options.idCenter});
+        
+        // Create the center icon
+        var icon = WireIt.cn("div", {id: this.options.idCenterIcon});
+        icon.appendChild(WireIt.cn("img", {src: this.options.centerIcon}));
+        center.appendChild(icon);
+        
+        // Create the center title
+        center.appendChild(WireIt.cn("div", {id: this.options.idCenterTitle}, null, "New Workflow"));
+        
+        // Create the center layer -- just build the container for now, we will
+        // instantiate it later.
+        center.appendChild(WireIt.cn("div", {id: this.options.idLayer}));
+        
+        return center;
+    },
+    
     /**
      * Builds and returns the HTML content for the right part of the layout.
      * Overrides the parent class.
@@ -377,63 +376,63 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method buildContentRight
      * @return {HTMLElement} The right element to be used in the layout.
      */
-	buildContentRight : function() {
-		// Create the right <div> element
-		var right = WireIt.cn("div", {id: this.options.idRight});
-		
-		// Create the accordion -- just build the container for now, we will
-		// instantiate it later.
-		var accordian = WireIt.cn("ul", {id: this.options.idRightAccordian});
-		
-		// Create the minimap -- just build the container for now, we will
-		// instantiate it later.
-		var li = WireIt.cn("li");
-		li.appendChild(WireIt.cn("h2", null, null, "Minimap"));		
-		var temp = WireIt.cn("div", null, {position: 'relative'});		
-		temp.appendChild(WireIt.cn("div", {id: this.options.idLayerMap}));
-		li.appendChild(temp);
-		accordian.appendChild(li);
-		
-		// Create the service properties
-		li = WireIt.cn("li");
-		li.appendChild(WireIt.cn("h2", null, null, "Service Properties"));
-		temp = WireIt.cn("div");
-		temp.appendChild(WireIt.cn("div", {id: this.options.idServiceProperties}, null,
-		      "Click on a component to show extra properties."));
-		li.appendChild(temp);
-		accordian.appendChild(li);
-		
-		// Create the workflow properties -- just build the container for now, we
-		// will instantiate it later.
-		li = WireIt.cn("li");
-		li.appendChild(WireIt.cn("h2", null, null, "Workflow Properties"));
-		temp = WireIt.cn("div");
-		temp.appendChild(WireIt.cn("div", {id: this.options.idWorkflowProperties}));
-		li.appendChild(temp);
-		accordian.appendChild(li);
-		
-		// ADDED BY NINA //
-		// Create the data properties -- just build the container for now, we
-		// will instantiate it later.
-		li = WireIt.cn("li");
-		li.appendChild(WireIt.cn("h2", null, null, "Data Properties"));
-		temp = WireIt.cn("div");
-		temp.appendChild(WireIt.cn("div", {id: this.options.idDataProperties}));
-		li.appendChild(temp);
-		accordian.appendChild(li);
-		
-		right.appendChild(accordian);
-		return right;
-	},
-	
-	
-	/************************ RENDERING METHODS ************************/
+    buildContentRight : function() {
+        // Create the right <div> element
+        var right = WireIt.cn("div", {id: this.options.idRight});
+        
+        // Create the accordion -- just build the container for now, we will
+        // instantiate it later.
+        var accordian = WireIt.cn("ul", {id: this.options.idRightAccordian});
+        
+        // Create the minimap -- just build the container for now, we will
+        // instantiate it later.
+        var li = WireIt.cn("li");
+        li.appendChild(WireIt.cn("h2", null, null, "Minimap"));     
+        var temp = WireIt.cn("div", null, {position: 'relative'});      
+        temp.appendChild(WireIt.cn("div", {id: this.options.idLayerMap}));
+        li.appendChild(temp);
+        accordian.appendChild(li);
+        
+        // Create the service properties
+        li = WireIt.cn("li");
+        li.appendChild(WireIt.cn("h2", null, null, "Service Properties"));
+        temp = WireIt.cn("div");
+        temp.appendChild(WireIt.cn("div", {id: this.options.idServiceProperties}, null,
+              "Click on a component to show extra properties."));
+        li.appendChild(temp);
+        accordian.appendChild(li);
+        
+        // Create the workflow properties -- just build the container for now, we
+        // will instantiate it later.
+        li = WireIt.cn("li");
+        li.appendChild(WireIt.cn("h2", null, null, "Workflow Properties"));
+        temp = WireIt.cn("div");
+        temp.appendChild(WireIt.cn("div", {id: this.options.idWorkflowProperties}));
+        li.appendChild(temp);
+        accordian.appendChild(li);
+        
+        // ADDED BY NINA //
+        // Create the data properties -- just build the container for now, we
+        // will instantiate it later.
+        li = WireIt.cn("li");
+        li.appendChild(WireIt.cn("h2", null, null, "Data Properties"));
+        temp = WireIt.cn("div");
+        temp.appendChild(WireIt.cn("div", {id: this.options.idDataProperties}));
+        li.appendChild(temp);
+        accordian.appendChild(li);
+        
+        right.appendChild(accordian);
+        return right;
+    },
+    
+    
+    /************************ RENDERING METHODS ************************/
     /* These methods are run AFTER the perspective is instantiated     */
     /* (i.e., the HTML has been built).  They build and render the YUI */
     /* objects that are used to render interactive, dynamic content.   */
     /*******************************************************************/
-	
-	/**
+    
+    /**
      * Renders the content in this perspective, after it has been built.
      * Overrides the parent class.
      * In the compose perspective, it builds the palette tree, the properties
@@ -442,8 +441,8 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * 
      * @method render
      */
-	render: function() {
-		// Call the parent class.
+    render: function() {
+        // Call the parent class.
         wfeditor.ComposePerspective.superclass.render.call(this);
         
         // Do CSS magic to get split buttons to show up properly
@@ -457,19 +456,19 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         
         // Instantiate the palette with callbacks
         var callbacks = {
-        	makeModuleEl: this.makeModuleElCallback,
-        	makeModuleElScope: this,
-        	search: this.searchCallback,
-        	searchScope: this,
-        	categorize: this.categorizeCallback,
-        	categorizeScope: this,
-        	favorites: this.favoritesCallback,
-        	favoritesScope: this
+            makeModuleEl: this.makeModuleElCallback,
+            makeModuleElScope: this,
+            search: this.searchCallback,
+            searchScope: this,
+            categorize: this.categorizeCallback,
+            categorizeScope: this,
+            favorites: this.favoritesCallback,
+            favoritesScope: this
         };
         
         var paletteType = eval(this.options.paletteXtype);
         this.palette = new paletteType(callbacks, {
-        	id: this.options.idLeft
+            id: this.options.idLeft
         });
         
         // Instantiate properties accordion.
@@ -558,7 +557,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
          * @type {wfeditor.PackageContainer}
          */
         this.packageContainer = new wfeditor.PackageContainer({
-        	elId: this.options.idPackageContainer
+            elId: this.options.idPackageContainer
         }, this.layer);
         this.packageContainer.eventAddWire.subscribe(this.layer.onAddWire, this.layer, true);
         this.packageContainer.eventRemoveWire.subscribe(this.layer.onRemoveWire, this.layer, true);
@@ -568,6 +567,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         
         // Subscribe to the add and remove wire functions
         this.layer.eventRemoveWire.subscribe(this.onRemoveWire, this, true);
+        
+        // Store canvas element -- by Jessica Lu
+        this.packageContainer.canvasEl = this.options.layerOptions.packageEl;
     },
     
     
@@ -621,7 +623,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onTabResized
      */
     onTabResized : function() {
-    	this.packageContainer.onLayerChanged();
+        this.packageContainer.onLayerChanged();
     },
     
     
@@ -646,7 +648,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onClickUndo
      */
     onClickUndo : function() {
-    	this.editor.getCommandStack().undo();
+        this.editor.getCommandStack().undo();
     },
     
     /**
@@ -655,7 +657,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onClickRedo
      */
     onClickRedo : function() {
-    	this.editor.getCommandStack().redo();
+        this.editor.getCommandStack().redo();
     },
     
     
@@ -697,9 +699,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             // Check if it's unsaved or not
             if(!this.isSaved()) {
                 this.confirm({
-                	msg: "Your workflow is not saved!  Do you want to continue?",
-                	onYes: this._loadWorkflow,
-                	scope: this
+                    msg: "Your workflow is not saved!  Do you want to continue?",
+                    onYes: this._loadWorkflow,
+                    scope: this
                 });
             } else {
                 this._loadWorkflow();
@@ -713,7 +715,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method _loadWorkflow
      */
     _loadWorkflow: function() {
-    	// Tell the editor to handle the actual loading, and call the
+        // Tell the editor to handle the actual loading, and call the
         // "onLoadSuccess" method on this object when it's done.
         this.editor.loadWorkflow(this.onLoadSuccess, this);
     },
@@ -729,8 +731,8 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * modules, and wires.
      */
     onLoadSuccess: function(result) {
-    	// Show wait panel
-    	this.showWait();
+        // Show wait panel
+        this.showWait();
         this.initialRootWorkflowName = result.name;
         this.isRootWorkflow = true;
         this.markSaved();
@@ -801,45 +803,45 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @return true when the name is valid, false otherwise.
      */
     validateName : function(strName) {
-    	// We check we have a value.
-    	if (!strName) {
-    		return false;
-    	}
-    	
-    	// We check that the type is string.
-    	if (typeof strName != "string") {
-    		return false;
-    	}
+        // We check we have a value.
+        if (!strName) {
+            return false;
+        }
+        
+        // We check that the type is string.
+        if (typeof strName != "string") {
+            return false;
+        }
 
         // We check that the length is less that 255
-    	if (strName.length < 1 || strName.length > 255) {
-    	   this.error("The name of the workflow cannot be empty or longer than 255 characters.",
+        if (strName.length < 1 || strName.length > 255) {
+           this.error("The name of the workflow cannot be empty or longer than 255 characters.",
                "Invalid name.");
-    		return false;
-    	}
+            return false;
+        }
 
         // And then we check the data.
 
         /*
-	     * The list of valid characters for the name are letter, number, spaces, . and _
-	     * Any other character should be marked as invalid.
-	     */
-	    var re=/[^\w\d\s\._]/g
-	    var charsFound = strName.match(re);
-	    
-	    /*
-	     * When we find invalid characters we will send a message to the user and end the
-	     * operation.
-	     */
-	    if (charsFound != null && charsFound.length > 0) {
-	        this.error("The characters in the name are not valid. Valid characters " +
-	           "include: Letters and numbers, spaces, period (.) " +
-	           "and underscode (_) characters.",
-	           "Invalid name.");
-	        return false;
-	    }
-	    
-	    return true;
+         * The list of valid characters for the name are letter, number, spaces, . and _
+         * Any other character should be marked as invalid.
+         */
+        var re=/[^\w\d\s\._]/g
+        var charsFound = strName.match(re);
+        
+        /*
+         * When we find invalid characters we will send a message to the user and end the
+         * operation.
+         */
+        if (charsFound != null && charsFound.length > 0) {
+            this.error("The characters in the name are not valid. Valid characters " +
+               "include: Letters and numbers, spaces, period (.) " +
+               "and underscode (_) characters.",
+               "Invalid name.");
+            return false;
+        }
+        
+        return true;
     },
 
     /**
@@ -849,7 +851,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method sanitizeDescription
      */
     sanitizeDescription : function() {
-    	// We get the current value of description.
+        // We get the current value of description.
         var props = this.propertiesForm.getValue();
         var description = props.description;
         
@@ -910,13 +912,13 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
                 }
             });
         } else {
-        	// We validate the name, if for some reason is invalid (false) we stop saving (return).
-        	if (!this.validateName(name)) {
-        		return;
-        	}
-        	
-        	// We now sanitize the description string, replace " for '
-        	this.sanitizeDescription();
+            // We validate the name, if for some reason is invalid (false) we stop saving (return).
+            if (!this.validateName(name)) {
+                return;
+            }
+            
+            // We now sanitize the description string, replace " for '
+            this.sanitizeDescription();
 
             // If the workflow is "new", then need to re-assign the ids
             // using the new name for this workflow.
@@ -1045,9 +1047,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
 
             this.editor.adapter.saveWorkflow([tempSavedWiring, tempParentSavedWiring], {
                 success: function(msg) {
-                	// Parse the JSON object from the msg string.
-                	msg = YAHOO.lang.JSON.parse(msg);
-                	
+                    // Parse the JSON object from the msg string.
+                    msg = YAHOO.lang.JSON.parse(msg);
+                    
                     // Update the properties as necessary
                     if(this.isRootWorkflow) {
                         this.setInitialRootWorkflowName(this.getName());
@@ -1079,12 +1081,12 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
                     this.packageChangedFlg = false;
                     
                     if(msg.module) {
-                    	// Add to modules list in WorkflowEditor
-                    	this.editor.modules.push(msg.module);
-                    	this.editor.modulesByName[value.name] = msg.module;
-                    	
-                    	// Add to palette
-                    	this.palette.addModuleToList(msg.module);
+                        // Add to modules list in WorkflowEditor
+                        this.editor.modules.push(msg.module);
+                        this.editor.modulesByName[value.name] = msg.module;
+                        
+                        // Add to palette
+                        this.palette.addModuleToList(msg.module);
                     }
                     
                     // Hide wait panel
@@ -1147,7 +1149,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onClickSaveAll
      */
     onClickSaveAll: function() {
-    	// TODO
+        // TODO
         alert('save all');
     },
     
@@ -1196,15 +1198,15 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onClickClose
      */
     onClickClose: function() {
-    	if(!this.isSaved()) {
-    		this.confirm({
-    			msg: "The workflow is not currently saved!  Are you sure you want to close it?",
-    			onYes: this.editor.onCloseWorkflowTab,
-    			scope: this.editor
-    		})
-    	} else {
-    		this.editor.onCloseWorkflowTab();
-    	}
+        if(!this.isSaved()) {
+            this.confirm({
+                msg: "The workflow is not currently saved!  Are you sure you want to close it?",
+                onYes: this.editor.onCloseWorkflowTab,
+                scope: this.editor
+            })
+        } else {
+            this.editor.onCloseWorkflowTab();
+        }
     },
     
     /**
@@ -1220,13 +1222,13 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             alert('save as is not allowed except for the root workflow');
         } else {
             if(!this.isSaved()) {
-            	this.confirm({
+                this.confirm({
                     msg: "The workflow is not currently saved!  Are you sure you want to close it?",
                     onYes: this.clearWorkflow,
                     scope: this
-            	});
+                });
             } else {
-            	this.clearWorkflow();
+                this.clearWorkflow();
             }
         }
     },
@@ -1237,14 +1239,14 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method clearWorkflow
      */
     clearWorkflow: function() {
-    	this.preventLayerChangedEvent = true;
-    	
-    	this.layer.clear(); 
-    	this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
-    	this.markSaved();
-    	this.updatePackageName();
-    	this.preventLayerChangedEvent = false;
-    	this.editor.getCommandStack().clearAll();
+        this.preventLayerChangedEvent = true;
+        
+        this.layer.clear(); 
+        this.propertiesForm.clear(false); // false to tell inputEx to NOT send the updatedEvt
+        this.markSaved();
+        this.updatePackageName();
+        this.preventLayerChangedEvent = false;
+        this.editor.getCommandStack().clearAll();
     },
     
     /**
@@ -1254,7 +1256,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onClickCloseAll
      */
     onClickCloseAll: function() {
-    	// TODO
+        // TODO
         alert('close all');
     },
     
@@ -1317,7 +1319,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
 
         // Call the backend.
         this.editor.adapter.deleteWiring({workflowId: this.getWorkflowId()}, {
-    	 success: function(result) {
+         success: function(result) {
               var workflowName = this.getName();
               
               // Clear the canvas/tab
@@ -1408,10 +1410,10 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method validateWorkflowCallback
      */
     validateWorkflowCallback: function(o) {
-    	// Hide wait panel
-    	this.hideWait();
-    	
-    	this.okay("This workflow is syntactically valid!", "Syntactic Check Passed!");
+        // Hide wait panel
+        this.hideWait();
+        
+        this.okay("This workflow is syntactically valid!", "Syntactic Check Passed!");
     },
     
     
@@ -1426,7 +1428,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} modules The new modules.
      */
     updateModules : function(modules) {
-    	this.palette.updateModules(modules);
+        this.palette.updateModules(modules);
     },
     
     /**
@@ -1436,7 +1438,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} favorites the user's favorites to set.
      */
     updateFavorites : function(favorites) {
-    	this.palette.updateFavorites(favorites);
+        this.palette.updateFavorites(favorites);
     },
     
     /**
@@ -1463,7 +1465,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} favorites
      */
     favoritesCallback : function(favorites) {
-    	this.editor.adapter.userSetFavorites(favorites);
+        this.editor.adapter.userSetFavorites(favorites);
     },
     
     /**
@@ -1476,7 +1478,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} categorizeKey The categorization key.
      */
     searchCallback : function(filterKey, categorizeKey) {
-    	// Show "waiting" panel
+        // Show "waiting" panel
         this.showWait();
         
         // Do call to backend
@@ -1505,8 +1507,8 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} categorizeKey The categorization key.
      */
     categorizeCallback : function(filterKey, categorizeKey) {
-    	// Show "waiting" panel
-    	this.showWait();
+        // Show "waiting" panel
+        this.showWait();
         
         // Do call to backend
         this.editor.adapter.getReorganizedServices(filterKey, categorizeKey, {
@@ -1539,19 +1541,21 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} jsonTags The list of tags.
      */
     updateTags : function(jsonTags) {
-    	// Clear out old properties fields
-    	this.options.propertiesFields = this.options.propertiesFields.slice(0, this.options.nPropertiesFields);
+        // Clear out old properties fields
+        this.options.propertiesFields = this.options.propertiesFields.slice(0, this.options.nPropertiesFields);
         YAHOO.util.Dom.get(this.options.idWorkflowProperties).innerHTML = "";
-    	
+        
         for(var i in jsonTags){
             var jsonTag = jsonTags[i];
             var category = jsonTag.semanticTypeCategory;
+            var subOptions = ['choose '+category+'...'];
             for(var j in jsonTag.semanticTypes) {
                 var sT = jsonTag.semanticTypes[j];
-                //var element = wfeditor.util.makeCheckboxField("Tag: " + category, sT, j == 0);
-                var element = wfeditor.util.makeCheckboxField(category, sT, j == 0);
-                this.options.propertiesFields.push(element);
+                subOptions.push(sT);
             }
+            //add multiselect object to the group form
+            var element = wfeditor.util.makeMultipleSelectField(category,subOptions,category);
+            this.options.propertiesFields.push(element);
         }
 
         // Instantiate the workflow properties form.
@@ -1586,7 +1590,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Object} projects The data projects.
      */
     updateDataProjects : function(projects) {
-    	this.dataCreator.updateProjects(projects);
+        this.dataCreator.updateProjects(projects);
     },
     
     /**
@@ -1615,7 +1619,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * factor, 2.0 is double the size, etc.
      */
     scaleLayer: function(scaleFactor) {
-    	// If the scale factor is the same, we don't need to do anything.
+        // If the scale factor is the same, we don't need to do anything.
         if(this.layer.scaleFactor && this.layer.scaleFactor == scaleFactor) {
             return;
         }
@@ -1627,7 +1631,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             if(this.layer.containers[i].setScale) {
                 this.layer.containers[i].setScale(scaleFactor);
             } else {
-            	// This shouldn't happen..!
+                // This shouldn't happen..!
                 this.warn('Container ' + i + ' doesn\'t have setScale method!', "You shouldn't see this warning!");
             }
         }
@@ -1665,7 +1669,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {wfeditor.command.CommandAddService} command The command that is executing.
      */
     _addModule : function(module, pos, command) {
-    	try {
+        try {
             // Get the container configuration and update it
             var containerConfig = module.container;
             containerConfig.position = pos;
@@ -1695,7 +1699,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             
             // Update the command
             if(command) {
-            	command.container = container;
+                command.container = container;
             }
         } catch(ex) {
             // this shouldn't happen...
@@ -1729,7 +1733,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method updatePackageName
      */
     updatePackageName : function() {
-    	this.updatePackageWithName(this.getName());
+        this.updatePackageWithName(this.getName());
     },
     
     /**
@@ -1740,13 +1744,13 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {String} name The name to set in the package title.
      */
     updatePackageWithName: function(name) {
-    	if(name == null || name == "") {
-    		name = "New Workflow";
-    	}
-    	var title = name;
-    	if(this.canvasReadOnly == true) {
-    	    title = title + " (read only)";
-    	}
+        if(name == null || name == "") {
+            name = "New Workflow";
+        }
+        var title = name;
+        if(this.canvasReadOnly == true) {
+            title = title + " (read only)";
+        }
         var nameEl = YAHOO.util.Dom.get(this.options.idCenterTitle);
         nameEl.innerHTML = title;
         
@@ -1771,16 +1775,16 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
         // Check if the "source" is -1, which only happens if this is a special
         // packaging wire.
         if(src.moduleId == -1) {
-        	var term = null;
-        	
-        	// Find the terminal on the other end
-        	if(YAHOO.lang.isUndefined(tgt.terminal)) {
-        		// it's a field wire
-        		term = this.layer.containers[tgt.moduleId].getFieldTerminal(tgt.field);
-        	} else {
-        	    // it's a port wire
+            var term = null;
+            
+            // Find the terminal on the other end
+            if(YAHOO.lang.isUndefined(tgt.terminal)) {
+                // it's a field wire
+                term = this.layer.containers[tgt.moduleId].getFieldTerminal(tgt.field);
+            } else {
+                // it's a port wire
                 term = this.layer.containers[tgt.moduleId].getTerminal(tgt.terminal);
-        	}
+            }
             
             // Create a new packaging terminal (and proxy) on the package border
             var layerTerm = this.packageContainer.addPackageTerminal(term, {});
@@ -1799,22 +1803,22 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
             
             return w;
         } else if(src.field || tgt.field) {
-        	var type = eval(wire.xtype || "WireIt.Wire");
-        	
-        	var terminal1 = src.field ?
-        	   this.layer.containers[src.moduleId].getFieldTerminal(src.field) :
-        	   this.layer.containers[src.moduleId].getTerminal(src.terminal);
-        	var terminal2 = tgt.field ?
-        	   this.layer.containers[tgt.moduleId].getFieldTerminal(tgt.field) :
-        	   this.layer.containers[tgt.moduleId].getTerminal(tgt.terminal);
-        	
-        	var w = new type(terminal1, terminal2, this.layer.el, wire);
-        	w.redraw();
-        	
-        	return w;
+            var type = eval(wire.xtype || "WireIt.Wire");
+            
+            var terminal1 = src.field ?
+               this.layer.containers[src.moduleId].getFieldTerminal(src.field) :
+               this.layer.containers[src.moduleId].getTerminal(src.terminal);
+            var terminal2 = tgt.field ?
+               this.layer.containers[tgt.moduleId].getFieldTerminal(tgt.field) :
+               this.layer.containers[tgt.moduleId].getTerminal(tgt.terminal);
+            
+            var w = new type(terminal1, terminal2, this.layer.el, wire);
+            w.redraw();
+            
+            return w;
         } else {
-        	// It's not a packaging or field wire, so call the old method.
-        	return this.layer.oldAddWire(wire);
+            // It's not a packaging or field wire, so call the old method.
+            return this.layer.oldAddWire(wire);
         }
     },
     
@@ -1830,7 +1834,7 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @return {String} The currently set name for the workflow.
      */
     getName: function() {
-    	return this.propertiesForm.getValue().name;
+        return this.propertiesForm.getValue().name;
     },
     
     /**
@@ -2034,12 +2038,12 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method handleContentReady
      */
     handleContentReady : function () {   
-     	// Allows the uploader to send log messages to trace, as well as to YAHOO.log   
-     	
-     	this.uploader.setAllowLogging(false);           
-     	// Allows multiple file selection in "Browse" dialog.   
-     	
-     	this.uploader.setAllowMultipleFiles(true);     
+        // Allows the uploader to send log messages to trace, as well as to YAHOO.log   
+        
+        this.uploader.setAllowLogging(false);           
+        // Allows multiple file selection in "Browse" dialog.   
+        
+        this.uploader.setAllowMultipleFiles(true);     
      },
         
    
@@ -2055,30 +2059,30 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      */
      onFileSelect : function (event) {  
 
-     	if('fileList' in event && event.fileList != null) { 
-     		this.fileList = event.fileList; }
-		
-     	 for (var item in this.fileList) {   
-     		if(YAHOO.lang.hasOwnProperty(this.fileList, item)) {   
-     			YAHOO.log(this.fileList[item].id); 
-     			this.fileID = this.fileList[item].id;
-     			if(YAHOO.lang.isUndefined(this.listofFiles))
-     			{
-     				this.listofFiles = this.fileList[this.fileID].name;
-     			}
-     			else
-     			{
-     				this.listofFiles = this.listofFiles + ", " + this.fileList[this.fileID].name;
-     			}
-     		}   
-     	}    
-     	
-     	this.uploader.disable();           
-     	var filename = document.getElementById("fileName");   
-     	filename.innerHTML = this.listofFiles;   
-     	
-     	var progressbar = document.getElementById("progressBar");   
-     	progressbar.innerHTML = "";  
+        if('fileList' in event && event.fileList != null) { 
+            this.fileList = event.fileList; }
+        
+         for (var item in this.fileList) {   
+            if(YAHOO.lang.hasOwnProperty(this.fileList, item)) {   
+                YAHOO.log(this.fileList[item].id); 
+                this.fileID = this.fileList[item].id;
+                if(YAHOO.lang.isUndefined(this.listofFiles))
+                {
+                    this.listofFiles = this.fileList[this.fileID].name;
+                }
+                else
+                {
+                    this.listofFiles = this.listofFiles + ", " + this.fileList[this.fileID].name;
+                }
+            }   
+        }    
+        
+        this.uploader.disable();           
+        var filename = document.getElementById("fileName");   
+        filename.innerHTML = this.listofFiles;   
+        
+        var progressbar = document.getElementById("progressBar");   
+        progressbar.innerHTML = "";  
      }, 
    
      /**
@@ -2087,29 +2091,29 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method upload
      */ 
    upload : function() {   
-   	
-   	 if (this.fileList != null) { 
-   		this.uploader.uploadAll("http://www.yswfblog.com/upload/upload_simple.php"); 
-   		} 
-   	 },
+    
+     if (this.fileList != null) { 
+        this.uploader.uploadAll("http://www.yswfblog.com/upload/upload_simple.php"); 
+        } 
+     },
    
      /**
      * This method clears teh files from the file list.
      * @method handleClearFiles
      */
    handleClearFiles : function () {   
-   	this.uploader.clearFileList();   
-   	this.uploader.enable();  
-   	this.fileID = null;   
-   	this.fileList = null;  
-   	this.listofFiles = null;
-   	
-   	var filename = document.getElementById("fileName");   
-   	filename.innerHTML = "";   
-   	
-   	var progressbar = document.getElementById("progressBar");   
-   	progressbar.innerHTML = "";   
-   	},
+    this.uploader.clearFileList();   
+    this.uploader.enable();  
+    this.fileID = null;   
+    this.fileList = null;  
+    this.listofFiles = null;
+    
+    var filename = document.getElementById("fileName");   
+    filename.innerHTML = "";   
+    
+    var progressbar = document.getElementById("progressBar");   
+    progressbar.innerHTML = "";   
+    },
    
      /**
      * This method updates progress bar as the upload is in progress
@@ -2117,25 +2121,25 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param event : event listened to when upload is in progress
      */
    onUploadProgress : function(event) {   
-   	  prog = Math.round(300*(event["bytesLoaded"]/event["bytesTotal"]));   
+      prog = Math.round(300*(event["bytesLoaded"]/event["bytesTotal"]));   
       progbar = "<div style=\"background-color: #f00; height: 5px; width: " + prog + "px\"/>";   
    
       var progressbar = document.getElementById("progressBar");   
-      progressbar.innerHTML = progbar;	   
-   	},
-   	
-   	 /**
+      progressbar.innerHTML = progbar;     
+    },
+    
+     /**
      * This method updates progress bar as the upload is complete
      * @method onUploadComplete
      * @param event : event listened to when upload is complete
      */
-   	onUploadComplete : function(event) {   
-   	 prog = Math.round(300*(event["bytesLoaded"]/event["bytesTotal"]));   
+    onUploadComplete : function(event) {   
+     prog = Math.round(300*(event["bytesLoaded"]/event["bytesTotal"]));   
      progbar = "<div style=\"background-color: #f00; height: 5px; width: " + prog + "px\"/>";   
    
      var progressbar = document.getElementById("progressBar");   
      progressbar.innerHTML = progbar; 
-   	},
+    },
 
 
     /************************ DRILLDOWN METHODS **************************/
@@ -2182,11 +2186,11 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @param {Array} args The event arguments.
      */
     onRemoveWire : function(e, args) {
-    	var wire = args[0];
-    	if(wire.isValidWire) {
-    		var command = new wfeditor.command.CommandDisconnectPort(wire);
+        var wire = args[0];
+        if(wire.isValidWire) {
+            var command = new wfeditor.command.CommandDisconnectPort(wire);
             this.editor.getCommandStack().execute(command); 
-    	}
+        }
     },
     
     
@@ -2202,9 +2206,9 @@ YAHOO.lang.extend(wfeditor.ComposePerspective, wfeditor.Perspective, {
      * @method onPropertiesUpdated
      */
     onPropertiesUpdated : function() {
-    	var newValue = this.propertiesForm.getValue();
-    	var command = new wfeditor.command.CommandChangeWorkflowInfo(this.propertiesForm,
-    	   this.oldValue, newValue);
+        var newValue = this.propertiesForm.getValue();
+        var command = new wfeditor.command.CommandChangeWorkflowInfo(this.propertiesForm,
+           this.oldValue, newValue);
         this.editor.getCommandStack().execute(command);
         this.oldValue = newValue; 
     }
